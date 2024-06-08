@@ -22,7 +22,6 @@ export function MemberListView() {
 		'legal_status': {},
 		'share_capital': {},
 		'sector': {},
-		'other_details': {},
 		'company_category': {},
 		'representative_fullname': {},
 		'position': {},
@@ -33,12 +32,7 @@ export function MemberListView() {
 		'sales_representative_position': {},
 		'sales_representative_email': {},
 		'sales_representative_phone_number': {},
-		'cover_letter_url': {},
 		'photo_url': {},
-		'commercial_register_url': {},
-		'idcard_url': {},
-		'password': {},
-		'member_id': {},
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -75,8 +69,20 @@ export function MemberListView() {
         try {
             const {members} = await MemberService.getAll(
                 {page: page}, abortController.signal);
+            const memeberData = members.data.map(member => {
+                member['logo_url'] = (<img src={member.logo_url} 
+                    className="rounded" width={50}/>);
+                member['photo_url'] = (<img src={member.photo_url} 
+                    className="rounded" width={50}/>);
+                member['company_name'] = (<Link to={`/members/${member.id}/edit`}>
+                    {member.company_name}</Link>);
+                member['website_url'] = (<a href={member.website_url} 
+                    target="_blank">{member.website_url}</a>);
 
-            setMembers(members.data);
+                return member;
+            })
+
+            setMembers(memeberData);
             setPageLength(members.last_page);
         } catch (error) {
             console.log(error);
@@ -102,10 +108,10 @@ export function MemberListView() {
 
     return (
         <>
-            <h6>Liste Members</h6>
+            <h4>Liste Members</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/members/create'>
-                    <i className='icon ion-plus'></i> Créer member
+                     Créer member
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

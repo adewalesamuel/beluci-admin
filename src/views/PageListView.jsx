@@ -11,10 +11,10 @@ export function PageListView() {
 
     const tableAttributes = {
         'title': {},
+        'slug': {},
 		'description': {},
-		'keywords': {},
-		'display_img_url': {},
-		'section_list': {},
+        'created_at': {},
+        'updated_at': {},
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -78,10 +78,10 @@ export function PageListView() {
 
     return (
         <>
-            <h6>Liste Pages</h6>
+            <h4>Liste Pages</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/pages/create'>
-                    <i className='icon ion-plus'></i> Créer page
+                     Créer page
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

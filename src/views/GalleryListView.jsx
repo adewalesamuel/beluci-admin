@@ -13,7 +13,6 @@ export function GalleryListView() {
         'img_url': {},
 		'title': {},
 		'slug': {},
-		'description': {},
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -51,7 +50,14 @@ export function GalleryListView() {
             const {gallerys} = await GalleryService.getAll(
                 {page: page}, abortController.signal);
 
-            setGallerys(gallerys.data);
+            const galleryData = gallerys.data.map(gallery => {
+                gallery['img_url'] = (<img src={gallery.img_url} 
+                    className="rounded" width={50}/>);
+                
+                return gallery;
+            });
+
+            setGallerys(galleryData);
             setPageLength(gallerys.last_page);
         } catch (error) {
             console.log(error);
@@ -77,10 +83,10 @@ export function GalleryListView() {
 
     return (
         <>
-            <h6>Liste Gallerys</h6>
+            <h4>Liste Gallerys</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/gallerys/create'>
-                    <i className='icon ion-plus'></i> Créer gallery
+                     Créer gallery
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

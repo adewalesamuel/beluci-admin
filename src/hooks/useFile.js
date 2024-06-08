@@ -14,12 +14,11 @@ export const useFile = () => {
 		try {
 			const formData = new FormData();
 
-			formData.append('image', file);
+			formData.append('file', file);
 
-			const {image_url} = await Services.FileService.store(
+			const {file_url} = await Services.FileService.fileStore(
 				formData, abortController.signal);
-
-			setFileUrl(image_url);
+			setFileUrl(file_url);
 		} catch(error) {
 			if (!('message' in error)) return;
 			setErrorMessage(error.message);

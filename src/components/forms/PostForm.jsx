@@ -1,23 +1,22 @@
 //'use client'
 import { Utils } from '../../utils';
+import { Components } from  "..";
 
 export function PostForm(props) {
     const {__} = Utils.String;
 
     return (
-        <form onSubmit={props.handleFormSubmit ?? null}>
+        <form onSubmit={props.handleFormSubmit ?? null} className="col-12 col-md-8 col-lg-6">
             <div className='row'>
                 <div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='display_url'>{__('display_url')}</label>
-                        <input className='form-control' type='text' id='display_url' name='display_url' 
-                        placeholder={__('display_url')} value={props.usePost.display_url ?? ''}
-                        disabled={props.isDisabled} onChange={ e => 
-                            props.usePost.setDisplay_url(e.target.value) ?? null}/>
+                        <Components.ImageFileInput img_url={props.usePost.display_url ?? ''}
+                        handleImageChange={props.usePost.setDisplay_url}/>
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='title'>{__('title')}</label>
                         <input className='form-control' type='text' id='title' name='title' 
                         placeholder={__('title')} value={props.usePost.title ?? ''}
@@ -26,7 +25,7 @@ export function PostForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='slug'>{__('slug')}</label>
                         <input className='form-control' type='text' id='slug' name='slug' 
                         placeholder={__('slug')} value={props.usePost.slug ?? ''}
@@ -35,7 +34,7 @@ export function PostForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='content'>{__('content')}</label>
                         <input className='form-control' type='text' id='content' name='content' 
                         placeholder={__('content')} value={props.usePost.content ?? ''}
@@ -44,7 +43,7 @@ export function PostForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='excerpt'>{__('excerpt')}</label>
                         <input className='form-control' type='text' id='excerpt' name='excerpt' 
                         placeholder={__('excerpt')} value={props.usePost.excerpt ?? ''}
@@ -53,7 +52,7 @@ export function PostForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='author'>{__('author')}</label>
                         <input className='form-control' type='text' id='author' name='author' 
                         placeholder={__('author')} value={props.usePost.author ?? ''}
@@ -62,7 +61,7 @@ export function PostForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='category_id'>{__('category_id')}</label>
                         <select className='select2 form-control' id='category_id' name='category_id' 
                         value={props.usePost.category_id ?? ''} disabled={props.isDisabled} 
@@ -81,7 +80,7 @@ export function PostForm(props) {
 				
                 <div className='col-12 text-right'>
                     <button disabled={props.isDisabled ?? false} type='submit' 
-                    className='btn btn-primary'>
+                    className='mt-3 btn btn-primary'>
                         {props.isDisabled ? 'Chargement...' :  'Enregistrer'}
                     </button>
                 </div>

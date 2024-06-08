@@ -34,6 +34,8 @@ import { MemberEditView } from './MemberEditView';
 import { PostListView } from './PostListView';
 import { PostCreateView } from './PostCreateView';
 import { PostEditView } from './PostEditView';
+import { DashboardView } from './DashbaordView';
+import { LoginView } from './LoginView';
 
 export const Views = {
     PermissionListView,
@@ -72,5 +74,6 @@ export const Views = {
 	PostListView,
 	PostCreateView,
 	PostEditView,
-	
+	DashboardView,
+	LoginView,
 }

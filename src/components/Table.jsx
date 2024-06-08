@@ -1,3 +1,6 @@
+import { FiPlus as ReadIcon, 
+    FiTrash as DeleteIcon
+ } from "react-icons/fi";
 export function Table(props) {
     const ACTIONS = {
         EDIT: 'edit',
@@ -15,16 +18,16 @@ export function Table(props) {
         );
 
     const renderEditButton = data => (
-        <button className="btn btn-sm btn-info mr-3" 
+        <button className="btn btn-sm btn-info me-3" 
         onClick={e => handleEditClick(e, data)} key={Math.random()}> 
-            Modifier
+            <ReadIcon/> Details
         </button>
         );
 
     const renderDeleteButton = data => (
         <button className="btn btn-sm btn-danger" 
         onClick={e => handleDeleteClick(e, data)} key={Math.random()}> 
-            Supprimer
+            <DeleteIcon />
         </button>
         );
 
@@ -33,7 +36,7 @@ export function Table(props) {
         .map((key, index) => {
             const regEx = new RegExp('[-_]', 'gi')
             return (
-                <th className={`${tableAttributes[key].thClassName ?? ""} 
+                <th className={`${tableAttributes[key].thClassName ?? "col"} 
                 whitespace-no-wrap`}
                 key={index}>
                     {key.replace(regEx, '')}
@@ -87,9 +90,10 @@ export function Table(props) {
     }
 
     return (
-        <div className='table-responsive'>
-            <table className="table">
-                <thead>
+        <div className='table-responsive mt-5'>
+            <table className="table table-bor table-thead-bordered 
+            table-nowrap table-align-middle card-table table-hover">
+                <thead className="thead-light">
                     <tr>{renderTableHeads()}</tr>
                 </thead>
                 <tbody>

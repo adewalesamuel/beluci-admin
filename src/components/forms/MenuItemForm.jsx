@@ -1,14 +1,15 @@
 //'use client'
 import { Utils } from '../../utils';
+import { Components } from  "..";
 
 export function MenuItemForm(props) {
     const {__} = Utils.String;
 
     return (
-        <form onSubmit={props.handleFormSubmit ?? null}>
+        <form onSubmit={props.handleFormSubmit ?? null} className="col-12 col-md-8 col-lg-6">
             <div className='row'>
                 <div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='name'>{__('name')}</label>
                         <input className='form-control' type='text' id='name' name='name' 
                         placeholder={__('name')} value={props.useMenuItem.name ?? ''}
@@ -17,25 +18,14 @@ export function MenuItemForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
-                        <label htmlFor='slug'>{__('slug')}</label>
-                        <input className='form-control' type='text' id='slug' name='slug' 
-                        placeholder={__('slug')} value={props.useMenuItem.slug ?? ''}
-                        disabled={props.isDisabled} onChange={ e => 
-                            props.useMenuItem.setSlug(e.target.value) ?? null}/>
-                    </div>
-                </div>
-				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='icon_url'>{__('icon_url')}</label>
-                        <input className='form-control' type='text' id='icon_url' name='icon_url' 
-                        placeholder={__('icon_url')} value={props.useMenuItem.icon_url ?? ''}
-                        disabled={props.isDisabled} onChange={ e => 
-                            props.useMenuItem.setIcon_url(e.target.value) ?? null}/>
+                        <Components.ImageFileInput img_url={props.useMenuItem.icon_url ?? ''}
+                        handleImageChange={props.useMenuItem.setIcon_url}/>
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='type'>{__('type')}</label>
                         <select className='select2 form-control' id='type' name='type' 
                         value={props.useMenuItem.type ?? ''} disabled={props.isDisabled} 
@@ -48,7 +38,7 @@ export function MenuItemForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='is_accent'>{__('is_accent')}</label>
                         <input className='form-control' type='checkbox' id='is_accent' name='is_accent' 
                         placeholder={__('is_accent')} value={props.useMenuItem.is_accent ?? ''}
@@ -57,7 +47,7 @@ export function MenuItemForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='menu_item_id'>{__('menu_item_id')}</label>
                         <select className='select2 form-control' id='menu_item_id' name='menu_item_id' 
                         value={props.useMenuItem.menu_item_id ?? ''} disabled={props.isDisabled} 
@@ -74,7 +64,7 @@ export function MenuItemForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='menu_id'>{__('menu_id')}</label>
                         <select className='select2 form-control' id='menu_id' name='menu_id' 
                         value={props.useMenuItem.menu_id ?? ''} disabled={props.isDisabled} 
@@ -93,7 +83,7 @@ export function MenuItemForm(props) {
 				
                 <div className='col-12 text-right'>
                     <button disabled={props.isDisabled ?? false} type='submit' 
-                    className='btn btn-primary'>
+                    className='mt-3 btn btn-primary'>
                         {props.isDisabled ? 'Chargement...' :  'Enregistrer'}
                     </button>
                 </div>

@@ -1,8 +1,8 @@
 const localStorage = typeof window !== 'undefined' ? 
 window.localStorage : {getItem: () => null, setItem: () => null, 
 removeItem: () => null};
-const tokenName = 'utk';
-const userName = 'user'
+const tokenName = 'atk';
+const userName = 'admin'
 
 const getSessionToken = () => {
     return localStorage?.getItem(tokenName) ?? null;

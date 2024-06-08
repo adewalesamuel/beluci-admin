@@ -1,8 +1,8 @@
-//import { Loader } from './Loader';
-//import { ErrorMessages } from './ErrorMessages';
-//import { Spinner } from './Spinner';
-//import { Table } from './Table';
-//import { Pagination } from './Pagination';
+import { Loader } from './Loader';
+import { ErrorMessages } from './ErrorMessages';
+import { Spinner } from './Spinner';
+import { Table } from './Table';
+import { Pagination } from './Pagination';
 import { PermissionForm } from './forms/PermissionForm';
 import { RoleForm } from './forms/RoleForm';
 import { SiteForm } from './forms/SiteForm';
@@ -15,13 +15,17 @@ import { PageForm } from './forms/PageForm';
 import { EventForm } from './forms/EventForm';
 import { MemberForm } from './forms/MemberForm';
 import { PostForm } from './forms/PostForm';
+import { MainMenu } from './MainMenu';
+import { PageHeader } from './PageHeader';
+import { ImageFileInput } from './ImageFileInput';
+import { FileInput } from './FileInput';
 
 export const Components = {
-    //Loader,
-	//ErrorMessages,
-	//Spinner,
-	//Table,
-	//Pagination,
+    Loader,
+	ErrorMessages,
+	Spinner,
+	Table,
+	Pagination,
 	PermissionForm,
 	RoleForm,
 	SiteForm,
@@ -34,5 +38,8 @@ export const Components = {
 	EventForm,
 	MemberForm,
 	PostForm,
-	
+	MainMenu,
+	PageHeader,	
+	ImageFileInput,
+	FileInput
 }

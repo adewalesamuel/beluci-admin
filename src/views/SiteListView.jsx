@@ -83,10 +83,10 @@ export function SiteListView() {
 
     return (
         <>
-            <h6>Liste Sites</h6>
+            <h4>Liste Sites</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/sites/create'>
-                    <i className='icon ion-plus'></i> Créer site
+                     Créer site
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

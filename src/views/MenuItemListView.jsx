@@ -12,9 +12,7 @@ export function MenuItemListView() {
     const tableAttributes = {
         'name': {},
 		'slug': {},
-		'icon_url': {},
 		'type': {},
-		'is_accent': {},
 		'menu_item_id': {},
 		'menu_id': {},
 		
@@ -31,7 +29,7 @@ export function MenuItemListView() {
 
     const handleEditClick = (e, data) => {
         e.preventDefault();
-        navigate(`/menuitems/${data.id}/edit`);
+        navigate(`/menu-items/${data.id}/edit`);
     }
     const handleDeleteClick = async (e, menuitem) => {
         e.preventDefault();
@@ -51,11 +49,11 @@ export function MenuItemListView() {
 
     const init = useCallback(async () => {
         try {
-            const {menuitems} = await MenuItemService.getAll(
+            const {menu_items} = await MenuItemService.getAll(
                 {page: page}, abortController.signal);
 
-            setMenuItems(menuitems.data);
-            setPageLength(menuitems.last_page);
+            setMenuItems(menu_items.data);
+            setPageLength(menu_items.last_page);
         } catch (error) {
             console.log(error);
         } finally {
@@ -80,10 +78,10 @@ export function MenuItemListView() {
 
     return (
         <>
-            <h6>Liste MenuItems</h6>
+            <h4>Liste MenuItems</h4>
             <Components.Loader isLoading={isLoading}>
-                <Link className='btn btn-info' to='/menuitems/create'>
-                    <i className='icon ion-plus'></i> Créer menuitem
+                <Link className='btn btn-info' to='/menu-items/create'>
+                     Créer menuitem
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

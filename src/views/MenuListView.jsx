@@ -75,10 +75,10 @@ export function MenuListView() {
 
     return (
         <>
-            <h6>Liste Menus</h6>
+            <h4>Liste Menus</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/menus/create'>
-                    <i className='icon ion-plus'></i> Créer menu
+                     Créer menu
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

@@ -10,6 +10,8 @@ import { PageService } from './PageService';
 import { EventService } from './EventService';
 import { MemberService } from './MemberService';
 import { PostService } from './PostService';
+import { AuthService } from './AuthService';
+import { FileService } from './FileService';
 
 export const Services = {
     PermissionService,
@@ -24,5 +26,7 @@ export const Services = {
 	EventService,
 	MemberService,
 	PostService,
+	AuthService,
+	FileService
 	
 }

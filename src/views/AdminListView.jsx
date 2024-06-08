@@ -77,10 +77,10 @@ export function AdminListView() {
 
     return (
         <>
-            <h6>Liste Admins</h6>
+            <h4>Liste Admins</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/admins/create'>
-                    <i className='icon ion-plus'></i> Créer admin
+                     Créer admin
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

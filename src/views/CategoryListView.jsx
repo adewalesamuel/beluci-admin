@@ -10,7 +10,6 @@ export function CategoryListView() {
     const { CategoryService } = Services;
 
     const tableAttributes = {
-        'display_url': {},
 		'name': {},
 		'slug': {},
 		'category_id': {},
@@ -77,10 +76,10 @@ export function CategoryListView() {
 
     return (
         <>
-            <h6>Liste Categorys</h6>
+            <h4>Liste Categorys</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/categorys/create'>
-                    <i className='icon ion-plus'></i> Créer category
+                     Créer category
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

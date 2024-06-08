@@ -3,7 +3,7 @@ import { Utils } from '../utils';
 const HOST = 'http://127.0.0.1';
 const PORT = '8000';
 const URL = import.meta.env.VITE_APP_HOST_URL ?? `${HOST}:${PORT}`;
-const ROOT_PATH  = '/api';
+const ROOT_PATH  = '/api/admin';
 const abortController = new AbortController();
 const getHeaders = () => {
     return (new Headers({

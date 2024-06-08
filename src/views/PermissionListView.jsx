@@ -75,10 +75,10 @@ export function PermissionListView() {
 
     return (
         <>
-            <h6>Liste Permissions</h6>
+            <h4>Liste Permissions</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/permissions/create'>
-                    <i className='icon ion-plus'></i> Créer permission
+                     Créer permission
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

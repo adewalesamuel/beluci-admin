@@ -18,8 +18,6 @@ export function EventListView() {
 		'gps_location': {},
 		'is_payed': {},
 		'price': {},
-		'features': {},
-		'description': {},
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -57,7 +55,14 @@ export function EventListView() {
             const {events} = await EventService.getAll(
                 {page: page}, abortController.signal);
 
-            setEvents(events.data);
+            const eventData = events.data.map(event => {
+                event['img_url'] = (<img src={event.img_url} 
+                    className="rounded" width={50}/>);
+                
+                return event;
+            });
+
+            setEvents(eventData);
             setPageLength(events.last_page);
         } catch (error) {
             console.log(error);
@@ -83,10 +88,10 @@ export function EventListView() {
 
     return (
         <>
-            <h6>Liste Events</h6>
+            <h4>Liste Events</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/events/create'>
-                    <i className='icon ion-plus'></i> Créer event
+                     Créer event
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

@@ -4,6 +4,7 @@ import { Services } from '../services';
 export const usePage = () => {
     const [id, setId] = useState('');
 	const [title, setTitle] = useState('');
+    const [slug, setSlug] = useState('');
 	const [description, setDescription] = useState('');
 	const [keywords, setKeywords] = useState('');
 	const [display_img_url, setDisplay_img_url] = useState('');
@@ -25,6 +26,7 @@ export const usePage = () => {
     const createPage = signal => {
         const payload = {
             title,
+            slug,
 		description,
 		keywords,
 		display_img_url,
@@ -38,6 +40,7 @@ export const usePage = () => {
     const updatePage = (pageId, signal) => {
         const payload = {
             title,
+            slug,
 		description,
 		keywords,
 		display_img_url,
@@ -54,6 +57,7 @@ export const usePage = () => {
     const fillPage = (page) => {
         setId(page.id);
         setTitle(page.title ?? '');
+        setSlug(page.slug ?? '');
 		setDescription(page.description ?? '');
 		setKeywords(page.keywords ?? '');
 		setDisplay_img_url(page.display_img_url ?? '');
@@ -63,6 +67,7 @@ export const usePage = () => {
     const emptyPage = () => {
         setId('');
         setTitle('');
+        setSlug('');
 		setDescription('');
 		setKeywords('');
 		setDisplay_img_url('');
@@ -73,6 +78,7 @@ export const usePage = () => {
     return {
         id,
         title,
+        slug,
 		description,
 		keywords,
 		display_img_url,
@@ -81,6 +87,7 @@ export const usePage = () => {
         errors,
         isDisabled,
         setTitle,
+        setSlug,
 		setDescription,
 		setKeywords,
 		setDisplay_img_url,

@@ -80,10 +80,10 @@ export function PostListView() {
 
     return (
         <>
-            <h6>Liste Posts</h6>
+            <h4>Liste Posts</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/posts/create'>
-                    <i className='icon ion-plus'></i> Créer post
+                     Créer post
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

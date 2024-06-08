@@ -5,10 +5,10 @@ export function AdminForm(props) {
     const {__} = Utils.String;
 
     return (
-        <form onSubmit={props.handleFormSubmit ?? null}>
+        <form onSubmit={props.handleFormSubmit ?? null} className="col-12 col-md-8 col-lg-6">
             <div className='row'>
                 <div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='name'>{__('name')}</label>
                         <input className='form-control' type='text' id='name' name='name' 
                         placeholder={__('name')} value={props.useAdmin.name ?? ''}
@@ -17,7 +17,7 @@ export function AdminForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='email'>{__('email')}</label>
                         <input className='form-control' type='text' id='email' name='email' 
                         placeholder={__('email')} value={props.useAdmin.email ?? ''}
@@ -26,7 +26,7 @@ export function AdminForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='password'>{__('password')}</label>
                         <input className='form-control' type='text' id='password' name='password' 
                         placeholder={__('password')} value={props.useAdmin.password ?? ''}
@@ -35,7 +35,7 @@ export function AdminForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group'>
+                    <div className='form-group mb-2'>
                         <label htmlFor='role_id'>{__('role_id')}</label>
                         <select className='select2 form-control' id='role_id' name='role_id' 
                         value={props.useAdmin.role_id ?? ''} disabled={props.isDisabled} 
@@ -54,7 +54,7 @@ export function AdminForm(props) {
 				
                 <div className='col-12 text-right'>
                     <button disabled={props.isDisabled ?? false} type='submit' 
-                    className='btn btn-primary'>
+                    className='mt-3 btn btn-primary'>
                         {props.isDisabled ? 'Chargement...' :  'Enregistrer'}
                     </button>
                 </div>
