@@ -17,7 +17,7 @@ export const useMenuItem = () => {
     const getMenuItem = (menuitemId, signal) => {        
         return Services.MenuItemService.getById(menuitemId, signal)
         .then(response => {
-            fillMenuItem(response.menuitem);
+            fillMenuItem(response.menu_item);
             setIsDisabled(false);
 
             return response;

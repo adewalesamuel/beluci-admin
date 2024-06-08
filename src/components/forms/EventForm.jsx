@@ -61,12 +61,12 @@ export function EventForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group mb-2'>
-                        <label htmlFor='is_payed'>{__('is_payed')}</label>
-                        <input className='form-control' type='checkbox' id='is_payed' name='is_payed' 
-                        placeholder={__('is_payed')} value={props.useEvent.is_payed ?? ''}
-                        disabled={props.isDisabled} onChange={ e => 
-                            props.useEvent.setIs_payed(e.target.value) ?? null}/>
+                    <div className='form-check form-switch mb-2'>
+                        <label className="form-check-label" htmlFor='is_payed'>{__('is_payed')}</label>
+                        <input className='form-check-input' type='checkbox' id='is_payed' name='is_payed' 
+                        placeholder={__('is_payed')} checked={Boolean(props.useEvent.is_payed)}
+                        disabled={props.isDisabled} onChange={ () => 
+                            props.useEvent.setIs_payed(Boolean(!props.useEvent.is_payed))}/>
                     </div>
                 </div>
 				<div className='col-12'>

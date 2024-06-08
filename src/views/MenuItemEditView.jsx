@@ -24,7 +24,7 @@ export function MenuItemEditView() {
         
         try {
             await useMenuItem.updateMenuItem(
-            	id, abortController.signal);
+                id, abortController.signal);
         } catch (error) {
             if ('message' in error) setErrorMessages([error.message]);
             if (!('messages' in error)) return;
@@ -45,7 +45,7 @@ export function MenuItemEditView() {
             
             const { menu_items } = await Services.MenuItemService
 			.getAll(abortController.signal);
-			setMenuItems(menu_items);
+			setMenu_items(menu_items);
 
 			const { menus } = await Services.MenuService
 			.getAll(abortController.signal);
@@ -71,7 +71,7 @@ export function MenuItemEditView() {
                 {errorMessages}
             </Components.ErrorMessages>
             <Components.MenuItemForm useMenuItem={useMenuItem}
-            menu_items={menu_items} setMenuItems={setMenuItems}
+            menu_items={menu_items} setMenuItems={setMenu_items}
 			menus={menus} setMenus={setMenus}
 			isDisabled={useMenuItem.isDisabled} handleFormSubmit={handleFormSubmit}/>
         </>

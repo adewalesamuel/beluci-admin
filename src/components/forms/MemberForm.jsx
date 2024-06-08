@@ -127,7 +127,7 @@ export function MemberForm(props) {
                     <div className='col-12'>
                         <div className='form-group mb-2'>
                             <label htmlFor='company_category'>{__('company_category')}</label>
-                            <select className='select2 form-control' id='company_category' name='company_category' 
+                            <select className='form-select' id='company_category' name='company_category' 
                             value={props.useMember.company_category ?? ''} disabled={props.isDisabled} 
                             onChange={ e => props.useMember.setCompany_category(e.target.value) ?? null}>
                                 <option hidden>Choisissez une option</option>
@@ -280,7 +280,7 @@ export function MemberForm(props) {
                     <div className='col-12'>
                         <div className='form-group mb-2'>
                             <label htmlFor='member_id'>{__('member_id')}</label>
-                            <select className='select2 form-control' id='member_id' name='member_id' 
+                            <select className='form-select' id='member_id' name='member_id' 
                             value={props.useMember.member_id ?? ''} disabled={props.isDisabled} 
                             onChange={ e => props.useMember.setMember_id(e.target.value) ?? null}>
                                 <option hidden>Choisissez une option</option>

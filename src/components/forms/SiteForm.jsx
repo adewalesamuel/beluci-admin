@@ -84,12 +84,12 @@ export function SiteForm(props) {
                     </div>
                 </div>
 				<div className='col-12'>
-                    <div className='form-group mb-2'>
-                        <label htmlFor='is_up'>{__('is_up')}</label>
-                        <input className='form-control' type='checkbox' id='is_up' name='is_up' 
-                        placeholder={__('is_up')} value={props.useSite.is_up ?? ''}
-                        disabled={props.isDisabled} onChange={ e => 
-                            props.useSite.setIs_up(e.target.value) ?? null}/>
+                    <div className='form-check form-switch mb-2'>
+                        <label className="form-check-label" htmlFor='is_up'>{__('is_up')}</label>
+                        <input className='form-check-input' type='checkbox' id='is_up' name='is_up' 
+                        placeholder={__('is_up')} checked={Boolean(props.useSite.is_up)}
+                        disabled={props.isDisabled} onChange={ () => 
+                            props.useSite.setIs_up(Boolean(!props.useSite.is_up))}/>
                     </div>
                 </div>
 				

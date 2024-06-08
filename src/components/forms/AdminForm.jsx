@@ -37,7 +37,7 @@ export function AdminForm(props) {
 				<div className='col-12'>
                     <div className='form-group mb-2'>
                         <label htmlFor='role_id'>{__('role_id')}</label>
-                        <select className='select2 form-control' id='role_id' name='role_id' 
+                        <select className='form-select' id='role_id' name='role_id' 
                         value={props.useAdmin.role_id ?? ''} disabled={props.isDisabled} 
                         onChange={ e => props.useAdmin.setRole_id(e.target.value) ?? null}>
                             <option hidden>Choisissez une option</option>

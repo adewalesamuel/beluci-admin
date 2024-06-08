@@ -1,7 +1,9 @@
 import { FiPlus as ReadIcon, 
     FiTrash as DeleteIcon
  } from "react-icons/fi";
+import { Utils } from "../utils";
 export function Table(props) {
+    const {__} = Utils.String;
     const ACTIONS = {
         EDIT: 'edit',
         READ: 'read',
@@ -34,12 +36,10 @@ export function Table(props) {
     const renderTableHeads = () => {
         const tableHeads = Object.keys(tableAttributes)
         .map((key, index) => {
-            const regEx = new RegExp('[-_]', 'gi')
             return (
                 <th className={`${tableAttributes[key].thClassName ?? "col"} 
-                whitespace-no-wrap`}
-                key={index}>
-                    {key.replace(regEx, '')}
+                whitespace-no-wrap`} key={index}>
+                    {__(key)}
                 </th>
             )
         })

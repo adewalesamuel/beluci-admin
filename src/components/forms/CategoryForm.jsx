@@ -36,7 +36,7 @@ export function CategoryForm(props) {
 				<div className='col-12'>
                     <div className='form-group mb-2'>
                         <label htmlFor='category_id'>{__('category_id')}</label>
-                        <select className='select2 form-control' id='category_id' name='category_id' 
+                        <select className='form-select' id='category_id' name='category_id' 
                         value={props.useCategory.category_id ?? ''} disabled={props.isDisabled} 
                         onChange={ e => props.useCategory.setCategory_id(e.target.value) ?? null}>
                             <option hidden>Choisissez une option</option>
