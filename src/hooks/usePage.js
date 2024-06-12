@@ -8,7 +8,7 @@ export const usePage = () => {
 	const [description, setDescription] = useState('');
 	const [keywords, setKeywords] = useState('');
 	const [display_img_url, setDisplay_img_url] = useState('');
-	const [section_list, setSection_list] = useState('');
+	const [section_list, setSection_list] = useState([]);
 	
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
@@ -30,7 +30,7 @@ export const usePage = () => {
 		description,
 		keywords,
 		display_img_url,
-		section_list,
+		section_list: JSON.stringify(section_list),
 		
         };
 
@@ -44,7 +44,7 @@ export const usePage = () => {
 		description,
 		keywords,
 		display_img_url,
-		section_list,
+		section_list: JSON.stringify(section_list),
 		
         };
 
@@ -61,7 +61,7 @@ export const usePage = () => {
 		setDescription(page.description ?? '');
 		setKeywords(page.keywords ?? '');
 		setDisplay_img_url(page.display_img_url ?? '');
-		setSection_list(page.section_list ?? '');
+		setSection_list(page.section_list);
 		
     }
     const emptyPage = () => {
@@ -71,7 +71,7 @@ export const usePage = () => {
 		setDescription('');
 		setKeywords('');
 		setDisplay_img_url('');
-		setSection_list('');
+		setSection_list([]);
 		
     }
 

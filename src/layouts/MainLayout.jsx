@@ -7,8 +7,7 @@ export function MainLayout({children}){
     const {isLoggedIn} = Utils.Auth;
 
     const navigate = useNavigate();
-    const {pathname} = useLocation();;
-    console.log(pathname);
+    const {pathname} = useLocation();
 
     useEffect(() => {
         if (!isLoggedIn())

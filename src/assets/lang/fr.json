@@ -1,5 +1,11 @@
 {
     "name": "Nom",
+    "menu-items": "Menu",
+    "categorys": "Categorie",
+    "pages": "Page",
+    "events": "Évènement",
+    "members": "Membre",
+    "gallerys": "Gallerie",
     "slug": "Slug",
     "permissions": "Permissions",
     "logo_url": "Logo",
