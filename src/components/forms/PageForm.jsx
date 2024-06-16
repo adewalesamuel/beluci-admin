@@ -135,6 +135,15 @@ export function PageForm(props) {
                     </div>
                     <div className='w-100'>
                         <div className='form-group mb-2'>
+                            <label htmlFor='slug'>{__('slug')}</label>
+                            <input className='form-control' type='text' id='slug' name='slug' 
+                            placeholder={__('slug')} value={props.usePage.slug ?? ''}
+                            disabled={props.isDisabled} onChange={ e => 
+                                props.usePage.setSlug(e.target.value) ?? null}/>
+                        </div>
+                    </div>
+                    <div className='w-100'>
+                        <div className='form-group mb-2'>
                             <label htmlFor='description'>{__('description')}</label>
                             <textarea className='form-control' type='text' id='description' name='description' 
                             placeholder={__('description')} value={props.usePage.description ?? ''}
