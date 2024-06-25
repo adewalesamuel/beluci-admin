@@ -4,16 +4,15 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 
-export function GalleryListView() {
+export function GalleryTypeListView() {
     let abortController = new AbortController();
 
-    const { GalleryService } = Services;
+    const { GalleryTypeService } = Services;
 
     const tableAttributes = {
-        'img_url': {},
-		'title': {},
+        'display_img_url': {},
+		'name': {},
 		'slug': {},
-        'type': {}
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -21,48 +20,45 @@ export function GalleryListView() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const [gallerys, setGallerys] = useState([]);
+    const [gallery_types, setGallery_types] = useState([]);
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
 
     const handleEditClick = (e, data) => {
         e.preventDefault();
-        navigate(`/gallerys/${data.id}/edit`);
+        navigate(`/gallery-types/${data.id}/edit`);
     }
     const handleDeleteClick = async (e, gallery) => {
         e.preventDefault();
 
         if (confirm('Voulez vous vraiment supprimer ce gallery')) {
-            const gallerysCopy = [...gallerys];
-            const index = gallerysCopy.findIndex(galleryItem => 
+            const gallery_typesCopy = [...gallery_types];
+            const index = gallery_typesCopy.findIndex(galleryItem => 
                 galleryItem.id === gallery.id);
 
-            gallerysCopy.splice(index, 1);
-            setGallerys(gallerysCopy);
+            gallery_typesCopy.splice(index, 1);
+            setGallery_types(gallery_typesCopy);
 
-            await GalleryService.destroy(gallery.id, 
+            await GalleryTypeService.destroy(gallery.id, 
                 abortController.signal);
         }
     }
 
     const init = useCallback(async () => {
         try {
-            const {gallerys} = await GalleryService.getAll(
+            const {gallery_types} = await GalleryTypeService.getAll(
                 {page: page}, abortController.signal);
 
-            const galleryData = gallerys.data.map(gallery => {
-                gallery['type'] = gallery?.gallery_type.name ?? "__";
-                gallery['img_url'] = (<img src={gallery.img_url} 
+            const galleryTypeData = gallery_types.data.map(gallery => {
+                gallery['display_img_url'] = (<img src={gallery.img_url} 
                     className="rounded" width={50}/>);
                 
                 return gallery;
             });
 
-            console.log(galleryData)
-
-            setGallerys(galleryData);
-            setPageLength(gallerys.last_page);
+            setGallery_types(galleryTypeData);
+            setPageLength(gallery_types.last_page);
         } catch (error) {
             console.log(error);
         } finally {
@@ -87,14 +83,14 @@ export function GalleryListView() {
 
     return (
         <>
-            <h4>Liste Gallerys</h4>
+            <h4>Liste GalleryTypes</h4>
             <Components.Loader isLoading={isLoading}>
-                <Link className='btn btn-info' to='/gallerys/create'>
-                     Créer gallery
+                <Link className='btn btn-info' to='/gallery-types/create'>
+                     Créer type gallery
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 
-                tableData={gallerys}/>
+                tableData={gallery_types}/>
 
                 <Components.Pagination pageLength={pageLength} page={parseInt(page)} />
             </Components.Loader>

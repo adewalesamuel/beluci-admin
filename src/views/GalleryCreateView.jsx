@@ -12,8 +12,9 @@ export function GalleryCreateView() {
 
     const useGallery = Hooks.useGallery();
 
-    
+    const [gallery_types, setGallery_types] = useState([]);
     const [errorMessages, setErrorMessages] = useState([]);
+
 
     const handleFormSubmit = async e => {
         e.preventDefault();
@@ -40,7 +41,11 @@ export function GalleryCreateView() {
         useGallery.setIsDisabled(true);
 
         try {
+            const {gallery_types} = await Services.GalleryTypeService.getAll(
+                abortController.signal
+            )
             
+            setGallery_types(gallery_types);
         } catch (error) {
             console.log(error);
         } finally {
@@ -59,7 +64,7 @@ export function GalleryCreateView() {
             <Components.ErrorMessages>
                 {errorMessages}
             </Components.ErrorMessages>
-            <Components.GalleryForm useGallery={useGallery}
+            <Components.GalleryForm useGallery={useGallery} gallery_types={gallery_types}
             isDisabled={useGallery.isDisabled} handleFormSubmit={handleFormSubmit}/>
         </>
     )

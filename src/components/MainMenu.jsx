@@ -39,12 +39,6 @@ export function MainMenu() {
                                     </NavLink>
                                 </div>
                                 <div className="nav-item">
-                                    <NavLink className="nav-link" to="/categorys">
-                                        <IconCategory size={18} className='nav-icon'/>
-                                        <span className="nav-link-title">Categories</span>
-                                    </NavLink>
-                                </div>
-                                <div className="nav-item">
                                     <NavLink className="nav-link" to="/pages">
                                         <IconPage size={18} className='nav-icon'/>
                                         <span className="nav-link-title">Pages</span>
@@ -66,6 +60,12 @@ export function MainMenu() {
                                     <NavLink className="nav-link" to="/gallerys">
                                         <IconImage size={18} className='nav-icon'/>
                                         <span className="nav-link-title">Gallery</span>
+                                    </NavLink>
+                                </div>
+                                <div className="nav-item">
+                                    <NavLink className="nav-link" to="/gallery-types">
+                                        <IconCategory size={18} className='nav-icon'/>
+                                        <span className="nav-link-title">Types gallery</span>
                                     </NavLink>
                                 </div>
                             </div>

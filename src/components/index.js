@@ -19,6 +19,7 @@ import { MainMenu } from './MainMenu';
 import { PageHeader } from './PageHeader';
 import { ImageFileInput } from './ImageFileInput';
 import { FileInput } from './FileInput';
+import { GalleryTypeForm } from './forms/GalleryTypeForm';
 
 export const Components = {
     Loader,
@@ -41,5 +42,6 @@ export const Components = {
 	MainMenu,
 	PageHeader,	
 	ImageFileInput,
-	FileInput
+	FileInput,
+	GalleryTypeForm,
 }

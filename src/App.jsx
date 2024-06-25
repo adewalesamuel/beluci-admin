@@ -6,7 +6,7 @@ import { Views } from './views'
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/admin'>
       <Routes>
         <Route path="/connexion" element={<Views.LoginView />} />
         <Route path='*' element={<AppRoutes.MainRoutes/>}/>

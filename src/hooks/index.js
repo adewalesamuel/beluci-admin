@@ -12,6 +12,7 @@ import { useMember } from './useMember';
 import { usePost } from './usePost';
 import { useImage } from './useImage';
 import { useFile } from './useFile';
+import { useGalleryType } from './useGalleryType';
 
 export const Hooks = {
     usePermission,
@@ -28,4 +29,5 @@ export const Hooks = {
 	usePost,
 	useImage,
 	useFile,
+	useGalleryType
 }

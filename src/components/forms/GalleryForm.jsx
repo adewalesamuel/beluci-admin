@@ -42,6 +42,23 @@ export function GalleryForm(props) {
                             props.useGallery.setDescription(e.target.value) ?? null} rows={5}></textarea>
                     </div>
                 </div>
+                <div className='col-12'>
+                    <div className='form-group mb-2'>
+                        <label htmlFor='gallery_type_id'>{__('gallery_type_id')}</label>
+                        <select className='form-select' id='gallery_type_id' name='gallery_type_id' 
+                        value={props.useGallery.gallery_type_id ?? ''} disabled={props.isDisabled} 
+                        onChange={ e => props.useGallery.setGallery_type_id(e.target.value) ?? null}>
+                            <option hidden>Choisissez une option</option>
+                            {
+                                props.gallery_types.map((gallery_type, index) => {
+                                    return (<option key={index} value={gallery_type.id ?? ''}>
+                                                {gallery_type.name}
+                                            </option>)
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
 				
                 <div className='col-12 text-right'>
                     <button disabled={props.isDisabled ?? false} type='submit' 

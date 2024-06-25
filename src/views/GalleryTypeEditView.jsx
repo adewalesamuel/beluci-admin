@@ -3,25 +3,23 @@ import { useCallback, useEffect, useState } from 'react';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
 import { useParams } from 'react-router-dom';
-import { Services } from '../services';
 
-export function GalleryEditView() {
+export function GalleryTypeEditView() {
     let abortController = new AbortController();
 
     const {id} = useParams();
 
-    const useGallery = Hooks.useGallery();
+    const useGalleryType = Hooks.useGalleryType();
 
-    const [gallery_types, setGallery_types] = useState([]);    
     const [errorMessages, setErrorMessages] = useState([]);
 
     const handleFormSubmit = async e => {
         e.preventDefault();
-        useGallery.setIsDisabled(true);
+        useGalleryType.setIsDisabled(true);
         setErrorMessages([]);
         
         try {
-            await useGallery.updateGallery(
+            await useGalleryType.updateGalleryType(
                 id, abortController.signal);
         } catch (error) {
             if ('message' in error) setErrorMessages([error.message]);
@@ -31,25 +29,19 @@ export function GalleryEditView() {
 
             setErrorMessages(messages);
         } finally {
-            useGallery.setIsDisabled(false);
+            useGalleryType.setIsDisabled(false);
         }
     }
 
     const init = useCallback(async () => {
-        useGallery.setIsDisabled(true);
+        useGalleryType.setIsDisabled(true);
 
         try {
-            await useGallery.getGallery(id, abortController.signal);
-            
-            const {gallery_types} = await Services.GalleryTypeService.getAll(
-                abortController.signal
-            )
-            
-            setGallery_types(gallery_types);
+            await useGalleryType.getGalleryType(id, abortController.signal);
         } catch (error) {
             console.log(error);
         } finally{
-            useGallery.setIsDisabled(false);
+            useGalleryType.setIsDisabled(false);
         }
     }, [])
 
@@ -59,13 +51,13 @@ export function GalleryEditView() {
 
     return (
         <>
-            <h3>Modifier Gallery</h3>
+            <h3>Modifier type gallery</h3>
 
             <Components.ErrorMessages>
                 {errorMessages}
             </Components.ErrorMessages>
-            <Components.GalleryForm useGallery={useGallery} gallery_types={gallery_types}
-            isDisabled={useGallery.isDisabled} handleFormSubmit={handleFormSubmit}/>
+            <Components.GalleryTypeForm useGalleryType={useGalleryType}
+            isDisabled={useGalleryType.isDisabled} handleFormSubmit={handleFormSubmit}/>
         </>
     )
 }
