@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg'
 import { FiHome as IconHome,
     FiMenu as IconMenu,
@@ -8,8 +8,26 @@ import { FiHome as IconHome,
     FiUsers as IconUsers,
     FiImage as IconImage
  } from 'react-icons/fi';
+import { TbLogout } from 'react-icons/tb';
+import { Services } from '../services';
+import { Utils } from '../utils';
 
 export function MainMenu() {
+    const abortController = new AbortController();
+
+    const navigate = useNavigate();
+
+    const handleLogoutClick = e => {
+        e.preventDefault();
+
+        if (confirm('Voulez vous vraiment vous deconnecter ?')) {
+            Services.AuthService.logout(
+                JSON.stringify({}), abortController.signal);
+            Utils.Auth.removeSessionToken();
+            
+            navigate('/connexion', {replace: true});
+        }
+    }
     return (
         <aside className="js-navbar-vertical-aside navbar navbar-vertical-aside 
             navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-dark bg-dark">
@@ -72,7 +90,11 @@ export function MainMenu() {
                         </div>
                     </div>
             
-                    <div className="navbar-vertical-footer">Footer</div>
+                    <div className="navbar-vertical-footer">
+                        <div className="text-danger" onClick={handleLogoutClick} role="button">
+                            <TbLogout size={20}/> Se Deconnecter
+                        </div>
+                    </div>
                 </div>
             </div>
         </aside>
