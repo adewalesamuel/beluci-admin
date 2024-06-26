@@ -20,6 +20,7 @@ import { PageHeader } from './PageHeader';
 import { ImageFileInput } from './ImageFileInput';
 import { FileInput } from './FileInput';
 import { GalleryTypeForm } from './forms/GalleryTypeForm';
+import { Modal } from './Modal';
 
 export const Components = {
     Loader,
@@ -44,4 +45,5 @@ export const Components = {
 	ImageFileInput,
 	FileInput,
 	GalleryTypeForm,
+	Modal,
 }

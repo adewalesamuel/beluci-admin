@@ -52,7 +52,7 @@ export function GalleryListView() {
                 {page: page}, abortController.signal);
 
             const galleryData = gallerys.data.map(gallery => {
-                gallery['type'] = gallery?.gallery_type.name ?? "__";
+                gallery['type'] = gallery?.gallery_type?.name ?? "__";
                 gallery['img_url'] = (<img src={gallery.img_url} 
                     className="rounded" width={50}/>);
                 

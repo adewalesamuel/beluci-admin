@@ -36,24 +36,8 @@ export function PageCreateView() {
         }
     }
 
-    const init = useCallback(async () => {
-        usePage.setIsDisabled(true);
-
-        try {
-            
-        } catch (error) {
-            console.log(error);
-        } finally {
-            usePage.setIsDisabled(false);
-        }
-    }, [])
-
-    useEffect(() => {
-        init()
-    }, [init])
-
     return (
-        <>
+        <section className='position-relative'>
             <h3>Créer Page</h3>
 
             <Components.ErrorMessages>
@@ -61,6 +45,6 @@ export function PageCreateView() {
             </Components.ErrorMessages>
             <Components.PageForm usePage={usePage}
             isDisabled={usePage.isDisabled} handleFormSubmit={handleFormSubmit}/>
-        </>
+        </section>
     )
 }

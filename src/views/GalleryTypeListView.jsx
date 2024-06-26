@@ -10,9 +10,9 @@ export function GalleryTypeListView() {
     const { GalleryTypeService } = Services;
 
     const tableAttributes = {
-        'display_img_url': {},
-		'name': {},
+        'name': {},
 		'slug': {},
+        'display_img_url': {},
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -49,15 +49,16 @@ export function GalleryTypeListView() {
         try {
             const {gallery_types} = await GalleryTypeService.getAll(
                 {page: page}, abortController.signal);
-
-            const galleryTypeData = gallery_types.data.map(gallery => {
-                gallery['display_img_url'] = (<img src={gallery.img_url} 
+                console.log(gallery_types)
+            const galleryTypeData = gallery_types.data.map(gallery_type => {
+                gallery_type['display_img_url'] = (<img src={gallery_type.display_img_url} 
                     className="rounded" width={50}/>);
                 
-                return gallery;
+                return gallery_type;
             });
 
             setGallery_types(galleryTypeData);
+            console.log(galleryTypeData)
             setPageLength(gallery_types.last_page);
         } catch (error) {
             console.log(error);
@@ -83,7 +84,7 @@ export function GalleryTypeListView() {
 
     return (
         <>
-            <h4>Liste GalleryTypes</h4>
+            <h4>Liste types gallery</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/gallery-types/create'>
                      Créer type gallery

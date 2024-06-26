@@ -1,9 +1,13 @@
 //'use client'
 import { Utils } from '../../utils';
 import { Components } from  "..";
+import { useState } from 'react';
+import { AiFillPlusCircle } from 'react-icons/ai';
 
 export function PageForm(props) {
     const {__} = Utils.String;
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const getSectionItemCopy = () => {
         return props.usePage.section_list.map(sectionItem => {
@@ -12,6 +16,36 @@ export function PageForm(props) {
                 item_list: sectionItem.item_list ?? null
             }
         });
+    }
+    
+    const getSectionType = (sectionTypeName=props.usePage?.sectionType?.name) => {
+        return props.usePage.sectionTypeList.find(
+            sectionType => sectionType.name === sectionTypeName);
+    }
+
+    const addSectionList = () => {
+        const sectionListCopy = [...props.usePage.section_list];
+
+        sectionListCopy.push(props.usePage.sectionType);
+        props.usePage.setSection_list(sectionListCopy);
+    }
+
+    const handleModalClose = () => {
+        props.usePage.setSectionType('');
+        setIsModalOpen(false);
+    }
+
+    const handleModalValidate = () => {
+        console.log("validate");
+
+        addSectionList();
+        props.usePage.setSectionType('');
+        setIsModalOpen(false);
+    }
+
+    const handleSectionTypeChange = name => {
+        console.log(getSectionType(name))
+        props.usePage.setSectionType(getSectionType(name));
     }
 
     const handleSectionItemChange = (index, name, value) => {
@@ -109,73 +143,108 @@ export function PageForm(props) {
     }
 
     return (
-        <form onSubmit={props.handleFormSubmit ?? null} className="col-12">
-            <div className='row'>
-                <div className="col-12 col-lg-8">
-                    {props.usePage.section_list.map((sectionItem, index) => {
-                        return (
-                            <div className="card mb-3" key={index}>
-                                <div className='card-title p-3'>{sectionItem.name} section</div>
-                                <div className='card-body p-2'>
-                                    {renderSectionItemInput(sectionItem, index)}
+        <>
+            <form onSubmit={props.handleFormSubmit ?? null} className="col-12">
+                <div className='row'>
+                    <div className="col-12 col-lg-8">
+                        {props.usePage.section_list.map((sectionItem, index) => {
+                            return (
+                                <div className="card mb-3" key={index}>
+                                    <div className='card-title p-3'>{sectionItem.name} section</div>
+                                    <div className='card-body p-2'>
+                                        {renderSectionItemInput(sectionItem, index)}
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className='text-center mt-3'>
+                            <button className="btn btn-primary" onClick={() => setIsModalOpen(true)} type="button">
+                                <AiFillPlusCircle className='me-2' size={20}/>
+                                Ajouter une section
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-12 col-lg-4">
+                        <div className='w-100'>
+                            <div className='form-group mb-2'>
+                                <label htmlFor='title'>{__('title')}</label>
+                                <input className='form-control' type='text' id='title' name='title' 
+                                placeholder={__('title')} value={props.usePage.title ?? ''}
+                                disabled={props.isDisabled} onChange={ e => 
+                                    props.usePage.setTitle(e.target.value) ?? null}/>
+                            </div>
+                        </div>
+                        <div className='w-100'>
+                            <div className='form-group mb-2'>
+                                <label htmlFor='slug'>{__('slug')}</label>
+                                <input className='form-control' type='text' id='slug' name='slug' 
+                                placeholder={__('slug')} value={props.usePage.slug ?? ''}
+                                disabled={props.isDisabled} onChange={ e => 
+                                    props.usePage.setSlug(e.target.value) ?? null}/>
+                            </div>
+                        </div>
+                        <div className='w-100'>
+                            <div className='form-group mb-2'>
+                                <label htmlFor='description'>{__('description')}</label>
+                                <textarea className='form-control' type='text' id='description' name='description' 
+                                placeholder={__('description')} value={props.usePage.description ?? ''}
+                                disabled={props.isDisabled} onChange={ e => 
+                                    props.usePage.setDescription(e.target.value) ?? null} rows={5}></textarea>
+                            </div>
+                        </div>
+                        <div className='w-100'>
+                            <div className='form-group mb-2'>
+                                <label htmlFor='keywords'>{__('keywords')}</label>
+                                <input className='form-control' type='text' id='keywords' name='keywords' 
+                                placeholder={__('keywords')} value={props.usePage.keywords ?? ''}
+                                disabled={props.isDisabled} onChange={ e => 
+                                    props.usePage.setKeywords(e.target.value) ?? null}/>
+                            </div>
+                        </div>
+                        <div className='w-100'>
+                            <div className='form-group mb-2'>
+                                <label htmlFor='display_img_url'>{__('display_img_url')}</label>
+                                <Components.ImageFileInput img_url={props.usePage.display_img_url ?? ''}
+                                handleImageChange={props.usePage.setDisplay_img_url} 
+                                width={500} height={200} />
+                            </div>
+                        </div>
+                        <div className='col-12 text-right'>
+                            <button disabled={props.isDisabled ?? false} type='submit' 
+                            className='mt-3 btn btn-primary w-100'>
+                                {props.isDisabled ? 'Chargement...' :  'Enregistrer'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {isModalOpen &&  
+                <Components.Modal title="Section"  isControlVisible={true}
+                handleModalValidate={handleModalValidate} handleModalClose={handleModalClose}>
+                    <form>
+                        <div className="row">
+                            <div className='col-12'>
+                                <div className='form-group mb-2'>
+                                    <label htmlFor='section_type'>{__('section_type')}</label>
+                                    <select className='form-select' id='section_type' name='section_type' 
+                                    value={getSectionType()?.name ?? ''} disabled={props.isDisabled} 
+                                    onChange={ e => handleSectionTypeChange(e.target.value)}>
+                                        <option hidden>Choisissez une section</option>
+                                        {
+                                            props.usePage.sectionTypeList.map((sectionTypeItem, index) => {
+                                                return (<option key={index} value={sectionTypeItem.name ?? ''}>
+                                                            {sectionTypeItem.name}
+                                                        </option>)
+                                            })
+                                        }
+                                    </select>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
-                <div className="col-12 col-lg-4">
-                    <div className='w-100'>
-                        <div className='form-group mb-2'>
-                            <label htmlFor='title'>{__('title')}</label>
-                            <input className='form-control' type='text' id='title' name='title' 
-                            placeholder={__('title')} value={props.usePage.title ?? ''}
-                            disabled={props.isDisabled} onChange={ e => 
-                                props.usePage.setTitle(e.target.value) ?? null}/>
                         </div>
-                    </div>
-                    <div className='w-100'>
-                        <div className='form-group mb-2'>
-                            <label htmlFor='slug'>{__('slug')}</label>
-                            <input className='form-control' type='text' id='slug' name='slug' 
-                            placeholder={__('slug')} value={props.usePage.slug ?? ''}
-                            disabled={props.isDisabled} onChange={ e => 
-                                props.usePage.setSlug(e.target.value) ?? null}/>
-                        </div>
-                    </div>
-                    <div className='w-100'>
-                        <div className='form-group mb-2'>
-                            <label htmlFor='description'>{__('description')}</label>
-                            <textarea className='form-control' type='text' id='description' name='description' 
-                            placeholder={__('description')} value={props.usePage.description ?? ''}
-                            disabled={props.isDisabled} onChange={ e => 
-                                props.usePage.setDescription(e.target.value) ?? null} rows={5}></textarea>
-                        </div>
-                    </div>
-                    <div className='w-100'>
-                        <div className='form-group mb-2'>
-                            <label htmlFor='keywords'>{__('keywords')}</label>
-                            <input className='form-control' type='text' id='keywords' name='keywords' 
-                            placeholder={__('keywords')} value={props.usePage.keywords ?? ''}
-                            disabled={props.isDisabled} onChange={ e => 
-                                props.usePage.setKeywords(e.target.value) ?? null}/>
-                        </div>
-                    </div>
-                    <div className='w-100'>
-                        <div className='form-group mb-2'>
-                            <label htmlFor='display_img_url'>{__('display_img_url')}</label>
-                            <Components.ImageFileInput img_url={props.usePage.display_img_url ?? ''}
-                            handleImageChange={props.usePage.setDisplay_img_url} 
-                            width={500} height={200} />
-                        </div>
-                    </div>
-                    <div className='col-12 text-right'>
-                        <button disabled={props.isDisabled ?? false} type='submit' 
-                        className='mt-3 btn btn-primary w-100'>
-                            {props.isDisabled ? 'Chargement...' :  'Enregistrer'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
+                    </form>
+                </Components.Modal>
+            }
+        </>
     )
 }

@@ -7,7 +7,7 @@ export function Modal(props) {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h4 className="modal-title" id="myModalLabel19">{props.title ?? ""}</h4>
-                        <button type="button" className="close" aria-label="Close" 
+                        <button type="button" className="btn btn-light btn-sm" aria-label="Close" 
                         disabled={props.isDisabled} onClick={props.handleModalClose}>
                             <span aria-hidden="true">&times;</span>
                         </button>

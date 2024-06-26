@@ -1,0 +1,84 @@
+[
+    {
+        "name" : "titleHeader",
+        "title" : "Entez un titre",
+        "backgroundImgUrl" : ""
+    },
+    {
+        "name" : "homeHero",
+        "backgroundImgUrl" : "",
+        "title" : "Entez un titre",
+        "description" : "Entrez une description",
+        "buttonText" : "Lire la suite"
+    },
+    {
+        "name" : "homeEvent",
+        "title" : "Entez un titre",
+        "buttonText" : "Voir tous nos évènements",
+        "buttonLink" : "/"
+    },
+    {
+        "name" : "homePresident",
+        "title" : "Entez un titre",
+        "description" : "Entrez une description",
+        "authorName" : "Pierre DECLERCK",
+        "authorJob" : "Président",
+        "authorImgUrl" : ""
+    },
+    {
+        "name" : "homeTeamList",
+        "title" : "Entez un titre",
+        "team_item_list" : [
+            {
+                "name" : "M. Michael Eeckout",
+                "job" : "Administrateur",
+                "linkedinLink" : "http://localhost:5173/formulaire-membre"
+            }
+        ]
+    },
+    {
+        "name" : "homeTeamDetail",
+        "title" : "Entez un titre",
+        "landscapeImgUrl" : "",
+        "portraitImgUrl" : "",
+        "team_detail_item_list" : [
+            {
+                "imgUrl" : "",
+                "name" : "Salomé YSEBAERT",
+                "job" : "Responsable de l'implémentation du projet PEM N'ZASSA",
+                "email" : "salmome.beluci@gmail.com",
+                "phoneNumber" : ""
+            }
+        ]
+    },
+    {
+        "name" : "eventAbout",
+        "title" : "Entez un titre",
+        "description" : "Entrez une description"
+    },
+    {
+        "name" : "eventList"
+    },
+    {
+        "name" : "service",
+        "title" : "Entez un titre",
+        "description" : "Entrez une description",
+        "service_item_list" : [
+            {
+                "imgUrl" : "",
+                "number" : "01",
+                "title" : "Entez un titre",
+                "description" : "Entrez une description"
+            }
+        ]
+    },
+    {
+        "name" : "pemAbout",
+        "title" : "Entez un titre",
+        "description" : "Entrez une description",
+        "backgroundImgUrl" : ""
+    },
+    {
+        "name" : "galleryTypeList"
+    }
+]

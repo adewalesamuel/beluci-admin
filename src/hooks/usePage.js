@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Services } from '../services';
+import section_type_list from "../data/sectionTypeList.json";
 
 export const usePage = () => {
+    const sectionTypeList = section_type_list;
+
+    const [sectionType, setSectionType] = useState({});
     const [id, setId] = useState('');
 	const [title, setTitle] = useState('');
     const [slug, setSlug] = useState('');
@@ -83,6 +87,8 @@ export const usePage = () => {
 		keywords,
 		display_img_url,
 		section_list,
+        sectionType,
+        sectionTypeList,
 		
         errors,
         isDisabled,
@@ -92,6 +98,7 @@ export const usePage = () => {
 		setKeywords,
 		setDisplay_img_url,
 		setSection_list,
+        setSectionType,
 		
         setId,
         setErrors,
@@ -101,6 +108,6 @@ export const usePage = () => {
         updatePage,
         deletePage,
         fillPage,
-        emptyPage
+        emptyPage,
     };
 }
