@@ -3,13 +3,14 @@ import { Utils } from '../../utils';
 import { Components } from  "..";
 import { useState } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
+import { TbTrashFilled } from 'react-icons/tb';
 
 export function PageForm(props) {
     const {__} = Utils.String;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const getSectionItemCopy = () => {
+    const getSectionListCopy = () => {
         return props.usePage.section_list.map(sectionItem => {
             return {
                 ...sectionItem,
@@ -23,10 +24,26 @@ export function PageForm(props) {
             sectionType => sectionType.name === sectionTypeName);
     }
 
-    const addSectionList = () => {
+    const addSectionType = () => {
         const sectionListCopy = [...props.usePage.section_list];
 
         sectionListCopy.push(props.usePage.sectionType);
+        props.usePage.setSection_list(sectionListCopy);
+    }
+
+    const duplicateSectionListItem = (sectionItemName, sectionListItemName, sectionListItem) => {
+        const sectionListCopy = [...props.usePage.section_list];
+        const sectionItem = sectionListCopy.find(item => item.name === sectionItemName);
+
+        sectionItem[sectionListItemName].push(sectionListItem);
+        props.usePage.setSection_list(sectionListCopy);
+    }
+
+    const popSectionListItem = (sectionItemName, sectionListItemName) => {
+        const sectionListCopy = [...props.usePage.section_list];
+        const sectionItem = sectionListCopy.find(item => item.name === sectionItemName);
+
+        sectionItem[sectionListItemName].pop();
         props.usePage.setSection_list(sectionListCopy);
     }
 
@@ -36,33 +53,30 @@ export function PageForm(props) {
     }
 
     const handleModalValidate = () => {
-        console.log("validate");
-
-        addSectionList();
+        addSectionType();
         props.usePage.setSectionType('');
         setIsModalOpen(false);
     }
 
     const handleSectionTypeChange = name => {
-        console.log(getSectionType(name))
         props.usePage.setSectionType(getSectionType(name));
     }
 
     const handleSectionItemChange = (index, name, value) => {
-        const sectionItemsCapy = getSectionItemCopy();
+        const sectionItemsCapy = getSectionListCopy();
         sectionItemsCapy[index][name] = value;
 
         props.usePage.setSection_list([...sectionItemsCapy]);
     }
 
     const handleSectionListItemChange = (parentIndex, sectionItemKey, index, name, value) => {
-        const sectionItemsCapy = getSectionItemCopy();
+        const sectionItemsCapy = getSectionListCopy();
         sectionItemsCapy[parentIndex][sectionItemKey][index][name] = value;
 
         props.usePage.setSection_list([...sectionItemsCapy]);
     }
 
-    const renderSectionListItemChange = (sectionListItem, sectionItemKey, index, jndex) => {
+    const renderSectionListItemInput = (sectionListItem, sectionItemKey, index, jndex) => {
         return Object.keys(sectionListItem).map((sectionListItemKey, kndex) => {
             if (sectionListItem[sectionListItemKey] === null) return;
 
@@ -126,7 +140,19 @@ export function PageForm(props) {
             } else if (sectionItemKey.endsWith('item_list')) {
                 inputType = sectionItem[sectionItemKey]?.map(((sectionListItem, kndex) => {
                     return (<div className='col-12 col-md-6 py-2 border border-2 mb-3' key={kndex}>
-                        {renderSectionListItemChange(sectionListItem, sectionItemKey, index, kndex)}
+                        {renderSectionListItemInput(sectionListItem, sectionItemKey, index, kndex)}
+                        {sectionItem[sectionItemKey].length - 1 === kndex && 
+                            <div className='mt-3'>
+                                <AiFillPlusCircle className='text-info me-2' onClick={() => 
+                                    duplicateSectionListItem(sectionItem.name, sectionItemKey, sectionListItem)} 
+                                size={25} role="button" title="Duppliquer"/>
+                                {kndex > 1 && 
+                                    <TbTrashFilled className='text-danger' onClick={() => 
+                                        popSectionListItem(sectionItem.name, sectionItemKey)} 
+                                    size={25} role="button" title="Suppimer"/>
+                                }
+                            </div>
+                        }
                     </div>)
                 }))
             } else {
