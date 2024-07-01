@@ -80,7 +80,7 @@ export function PageForm(props) {
             if (sectionListItemKey === 'description') {
                 inputType = (<textarea className='form-control' 
                 {...propItemObject} rows={3}></textarea>);
-            } else if (sectionListItemKey.endsWith('ImgUrl')) {
+            } else if (sectionListItemKey.endsWith('imgUrl')) {
                 inputType = (<Components.ImageFileInput 
                 img_url={propItemObject.value} width={200}
                 handleImageChange={e => handleSectionListItemChange(
