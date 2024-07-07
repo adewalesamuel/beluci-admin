@@ -31,6 +31,7 @@ export const useMember = () => {
 	const [commercial_register_url, setCommercial_register_url] = useState('');
 	const [idcard_url, setIdcard_url] = useState('');
 	const [password, setPassword] = useState('');
+	const [is_validated, setIs_validated] = useState(false);
 	const [member_id, setMember_id] = useState('');
 	
     const [errors, setErrors] = useState([]);
@@ -75,6 +76,7 @@ export const useMember = () => {
 		photo_url,
 		commercial_register_url,
 		idcard_url,
+		is_validated,
 		password,
 		member_id,
 		
@@ -112,6 +114,7 @@ export const useMember = () => {
 		photo_url,
 		commercial_register_url,
 		idcard_url,
+		is_validated,
 		password,
 		member_id,
 		
@@ -154,6 +157,7 @@ export const useMember = () => {
 		setIdcard_url(member.idcard_url ?? '');
 		setPassword(member.password ?? '');
 		setMember_id(member.member_id ?? '');
+		setIs_validated(member.is_validated ?? false);
 		
     }
     const emptyMember = () => {
@@ -187,6 +191,7 @@ export const useMember = () => {
 		setIdcard_url('');
 		setPassword('');
 		setMember_id('');
+		setIs_validated('');
 		
     }
 
@@ -220,6 +225,7 @@ export const useMember = () => {
 		commercial_register_url,
 		idcard_url,
 		password,
+		is_validated,
 		member_id,
 		
         errors,
@@ -253,6 +259,7 @@ export const useMember = () => {
 		setIdcard_url,
 		setPassword,
 		setMember_id,
+		setIs_validated,
 		
         setId,
         setErrors,

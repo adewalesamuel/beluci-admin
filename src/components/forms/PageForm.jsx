@@ -35,11 +35,13 @@ export function PageForm(props) {
         const sectionListCopy = [...props.usePage.section_list];
         const sectionItem = sectionListCopy.find(item => item.name === sectionItemName);
 
-        sectionItem[sectionListItemName].push(sectionListItem);
+        sectionItem[sectionListItemName].push({...sectionListItem});
         props.usePage.setSection_list(sectionListCopy);
     }
 
     const popSectionListItem = (sectionItemName, sectionListItemName) => {
+        if (!(confirm('Voulez-vous vraiment supprimer cet element?'))) return;
+
         const sectionListCopy = [...props.usePage.section_list];
         const sectionItem = sectionListCopy.find(item => item.name === sectionItemName);
 
@@ -146,7 +148,7 @@ export function PageForm(props) {
                                 <AiFillPlusCircle className='text-info me-2' onClick={() => 
                                     duplicateSectionListItem(sectionItem.name, sectionItemKey, sectionListItem)} 
                                 size={25} role="button" title="Duppliquer"/>
-                                {kndex > 1 && 
+                                {kndex > 0 && 
                                     <TbTrashFilled className='text-danger' onClick={() => 
                                         popSectionListItem(sectionItem.name, sectionItemKey)} 
                                     size={25} role="button" title="Suppimer"/>
@@ -171,7 +173,7 @@ export function PageForm(props) {
     return (
         <>
             <form onSubmit={props.handleFormSubmit ?? null} className="col-12">
-                <div className='row'>
+                <div className='row position-relative align-items-start'>
                     <div className="col-12 col-lg-8">
                         {props.usePage.section_list.map((sectionItem, index) => {
                             return (
@@ -190,7 +192,7 @@ export function PageForm(props) {
                             </button>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-4">
+                    <div className="col-12 col-lg-4 position-sticky" style={{top: 10}}>
                         <div className='w-100'>
                             <div className='form-group mb-2'>
                                 <label htmlFor='title'>{__('title')}</label>

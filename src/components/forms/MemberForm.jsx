@@ -269,6 +269,15 @@ export function MemberForm(props) {
                         </div>
                     </div>
                     <div className='col-12'>
+                    <div className='form-check form-switch mb-2'>
+                            <label className="form-check-label" htmlFor='is_validated'>{__('is_validated')}</label>
+                            <input className='form-check-input' type='checkbox' id='is_validated' name='is_validated' 
+                            placeholder={__('is_validated')} checked={Boolean(props.useMember.is_validated)}
+                            disabled={props.isDisabled} onChange={ () => 
+                                props.useMember.setIs_validated(Boolean(!props.useMember.is_validated))}/>
+                        </div>
+                    </div>
+                    <div className='col-12'>
                         <div className='form-group mb-2'>
                             <label htmlFor='password'>{__('password')}</label>
                             <input className='form-control' type='text' id='password' name='password' 
