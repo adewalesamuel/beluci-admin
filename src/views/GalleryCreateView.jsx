@@ -61,7 +61,7 @@ export function GalleryCreateView() {
 
     return (
         <>
-            <h3>Créer Gallery</h3>
+            <h3>Ajouter une photo</h3>
 
             <Components.ErrorMessages>
                 {errorMessages}

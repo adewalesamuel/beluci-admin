@@ -73,12 +73,6 @@ export function MainMenu() {
                                         <span className="nav-link-title">Membres</span>
                                     </NavLink>
                                 </div>
-                                <div className="nav-item">
-                                    <NavLink className="nav-link" to="/gallerys">
-                                        <IconImage size={18} className='nav-icon'/>
-                                        <span className="nav-link-title">Gallery</span>
-                                    </NavLink>
-                                </div>
                             </div>
                         </div>
                     </div>

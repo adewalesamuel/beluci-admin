@@ -83,7 +83,7 @@ export function GalleryListView() {
 
     return (
         <>
-            <h4>Gallery</h4>
+            <h4>Gallerie</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='create'>
                      Ajouter une photo

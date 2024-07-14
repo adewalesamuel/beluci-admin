@@ -59,7 +59,7 @@ export function GalleryEditView() {
 
     return (
         <>
-            <h3>Modifier Gallery</h3>
+            <h3>Modifier la photo</h3>
 
             <Components.ErrorMessages>
                 {errorMessages}
