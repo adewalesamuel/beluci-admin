@@ -10,6 +10,10 @@ const getById = (id, signal) => {
     return Api.get(`${ENDPOINT}/${id}`, signal);
 }
 
+const getByEventId = (id, signal) => {
+    return Api.get(`/events/${id}${ENDPOINT}`, signal);
+}
+
 const create = (payload, signal) => {
     return Api.post(ENDPOINT, payload, signal)
 }
@@ -25,6 +29,7 @@ export const GalleryService = {
     ENDPOINT,
     getAll,
     getById,
+    getByEventId,
     create,
     update,
     destroy
