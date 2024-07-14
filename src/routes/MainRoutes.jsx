@@ -12,16 +12,13 @@ export function MainRoutes() {
                 <Route path='pages/:id/edit' element={<Views.PageEditView />} />
                 <Route path='events' element={<Views.EventListView />} />
                 <Route path='events/create' element={<Views.EventCreateView />} />
-                <Route path='events/:id/edit' element={<Views.EventEditView />} />
+                <Route path='events/:id/edit/*' element={<Views.EventEditView />} />
                 <Route path='menus' element={<Views.MenuListView />} />
                 <Route path='menus/create' element={<Views.MenuCreateView />} />
                 <Route path='menus/:id/edit' element={<Views.MenuEditView />} />
                 <Route path='menu-items' element={<Views.MenuItemListView />} />
                 <Route path='menu-items/create' element={<Views.MenuItemCreateView />} />
                 <Route path='menu-items/:id/edit' element={<Views.MenuItemEditView />} />
-                <Route path='gallery-types' element={<Views.GalleryTypeListView />} />
-                <Route path='gallery-types/create' element={<Views.GalleryTypeCreateView />} />
-                <Route path='gallery-types/:id/edit' element={<Views.GalleryTypeEditView />} />
                 <Route path='gallerys' element={<Views.GalleryListView />} />
                 <Route path='gallerys/create' element={<Views.GalleryCreateView />} />
                 <Route path='gallerys/:id/edit' element={<Views.GalleryEditView />} />

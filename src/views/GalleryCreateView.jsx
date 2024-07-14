@@ -1,6 +1,6 @@
 //'use client'
 import { useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
@@ -11,8 +11,9 @@ export function GalleryCreateView() {
     const navigate = useNavigate();
 
     const useGallery = Hooks.useGallery();
+    const {id} = useParams();
 
-    const [gallery_types, setGallery_types] = useState([]);
+    const [events, setEvents] = useState([]);
     const [errorMessages, setErrorMessages] = useState([]);
 
 
@@ -24,7 +25,7 @@ export function GalleryCreateView() {
         try {
             await useGallery.createGallery(abortController.signal);
 
-            navigate('/gallerys');
+            navigate(-1);
         } catch (error) {
             if ('message' in error) setErrorMessages([error.message]);
             if (!('messages' in error)) return;
@@ -38,14 +39,15 @@ export function GalleryCreateView() {
     }
 
     const init = useCallback(async () => {
+        useGallery.setEvent_id(id);
         useGallery.setIsDisabled(true);
 
         try {
-            const {gallery_types} = await Services.GalleryTypeService.getAll(
-                abortController.signal
+            const {events} = await Services.EventService.getAll(
+                {}, abortController.signal
             )
             
-            setGallery_types(gallery_types);
+            setEvents(events);
         } catch (error) {
             console.log(error);
         } finally {
@@ -64,7 +66,7 @@ export function GalleryCreateView() {
             <Components.ErrorMessages>
                 {errorMessages}
             </Components.ErrorMessages>
-            <Components.GalleryForm useGallery={useGallery} gallery_types={gallery_types}
+            <Components.GalleryForm useGallery={useGallery} events={events}
             isDisabled={useGallery.isDisabled} handleFormSubmit={handleFormSubmit}/>
         </>
     )

@@ -6,7 +6,7 @@ export function EventForm(props) {
     const {__} = Utils.String;
 
     return (
-        <form onSubmit={props.handleFormSubmit ?? null} className="col-12 col-md-8 col-lg-6">
+        <form onSubmit={props.handleFormSubmit ?? null} className="col-12">
             <div className='row'>
                 <div className='col-12'>
                     <div className='form-group mb-2'>

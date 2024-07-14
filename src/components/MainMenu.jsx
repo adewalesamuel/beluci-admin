@@ -2,7 +2,6 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpg'
 import { FiHome as IconHome,
     FiMenu as IconMenu,
-    FiBox as IconCategory,
     FiBookOpen as IconPage,
     FiCalendar as IconEvent,
     FiUsers as IconUsers,
@@ -78,12 +77,6 @@ export function MainMenu() {
                                     <NavLink className="nav-link" to="/gallerys">
                                         <IconImage size={18} className='nav-icon'/>
                                         <span className="nav-link-title">Gallery</span>
-                                    </NavLink>
-                                </div>
-                                <div className="nav-item">
-                                    <NavLink className="nav-link" to="/gallery-types">
-                                        <IconCategory size={18} className='nav-icon'/>
-                                        <span className="nav-link-title">Types gallery</span>
                                     </NavLink>
                                 </div>
                             </div>

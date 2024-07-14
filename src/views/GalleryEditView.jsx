@@ -8,11 +8,11 @@ import { Services } from '../services';
 export function GalleryEditView() {
     let abortController = new AbortController();
 
-    const {id} = useParams();
+    const {galleryId} = useParams();
 
     const useGallery = Hooks.useGallery();
 
-    const [gallery_types, setGallery_types] = useState([]);    
+    const [events, setEvents] = useState([]);    
     const [errorMessages, setErrorMessages] = useState([]);
 
     const handleFormSubmit = async e => {
@@ -22,7 +22,7 @@ export function GalleryEditView() {
         
         try {
             await useGallery.updateGallery(
-                id, abortController.signal);
+                galleryId, abortController.signal);
         } catch (error) {
             if ('message' in error) setErrorMessages([error.message]);
             if (!('messages' in error)) return;
@@ -39,13 +39,13 @@ export function GalleryEditView() {
         useGallery.setIsDisabled(true);
 
         try {
-            await useGallery.getGallery(id, abortController.signal);
+            await useGallery.getGallery(galleryId, abortController.signal);
             
-            const {gallery_types} = await Services.GalleryTypeService.getAll(
-                abortController.signal
+            const {events} = await Services.EventService.getAll(
+                {}, abortController.signal
             )
             
-            setGallery_types(gallery_types);
+            setEvents(events);
         } catch (error) {
             console.log(error);
         } finally{
@@ -64,7 +64,7 @@ export function GalleryEditView() {
             <Components.ErrorMessages>
                 {errorMessages}
             </Components.ErrorMessages>
-            <Components.GalleryForm useGallery={useGallery} gallery_types={gallery_types}
+            <Components.GalleryForm useGallery={useGallery} events={events}
             isDisabled={useGallery.isDisabled} handleFormSubmit={handleFormSubmit}/>
         </>
     )

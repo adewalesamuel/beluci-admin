@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
-import { useParams } from 'react-router-dom';
-import { Services } from '../services';
+import { Route, Routes, useParams } from 'react-router-dom';
+import { Views } from '.';
 
 export function EventEditView() {
     let abortController = new AbortController();
@@ -11,7 +11,6 @@ export function EventEditView() {
     const {id} = useParams();
 
     const useEvent = Hooks.useEvent();
-
     
     const [errorMessages, setErrorMessages] = useState([]);
 
@@ -40,8 +39,6 @@ export function EventEditView() {
 
         try {
             await useEvent.getEvent(id, abortController.signal);
-            
-            
         } catch (error) {
             console.log(error);
         } finally{
@@ -56,12 +53,22 @@ export function EventEditView() {
     return (
         <>
             <h3>Modifier Event</h3>
-
-            <Components.ErrorMessages>
-                {errorMessages}
-            </Components.ErrorMessages>
-            <Components.EventForm useEvent={useEvent}
-            isDisabled={useEvent.isDisabled} handleFormSubmit={handleFormSubmit}/>
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <Components.ErrorMessages>
+                        {errorMessages}
+                    </Components.ErrorMessages>
+                    <Components.EventForm useEvent={useEvent}
+                    isDisabled={useEvent.isDisabled} handleFormSubmit={handleFormSubmit}/>
+                </div>
+                <div className="col-12 col-md-6">
+                    <Routes>
+                        <Route path="" element={<Views.GalleryListView />} />
+                        <Route path="create" element={<Views.GalleryCreateView />} />
+                        <Route path=":galleryId/edit" element={<Views.GalleryEditView />} />
+                    </Routes>
+                </div>
+            </div>
         </>
     )
 }
