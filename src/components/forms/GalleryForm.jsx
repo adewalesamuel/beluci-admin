@@ -6,7 +6,7 @@ export function GalleryForm(props) {
     const {__} = Utils.String;
 
     return (
-        <form onSubmit={props.handleFormSubmit ?? null} className="col-12 col-md-8 col-lg-6">
+        <form onSubmit={props.handleFormSubmit ?? null} className="col-12">
             <div className='row'>
                 <div className='col-12'>
                     <div className='form-group mb-2'>
@@ -44,15 +44,15 @@ export function GalleryForm(props) {
                 </div>
                 <div className='col-12'>
                     <div className='form-group mb-2'>
-                        <label htmlFor='gallery_type_id'>{__('gallery_type_id')}</label>
-                        <select className='form-select' id='gallery_type_id' name='gallery_type_id' 
-                        value={props.useGallery.gallery_type_id ?? ''} disabled={props.isDisabled} 
-                        onChange={ e => props.useGallery.setGallery_type_id(e.target.value) ?? null}>
+                        <label htmlFor='event_id'>{__('event_id')}</label>
+                        <select className='form-select' id='event_id' name='event_id' 
+                        value={props.useGallery.event_id ?? ''} disabled={props.isDisabled} 
+                        onChange={ e => props.useGallery.setEvent_id(e.target.value) ?? null}>
                             <option hidden>Choisissez une option</option>
                             {
-                                props.gallery_types.map((gallery_type, index) => {
-                                    return (<option key={index} value={gallery_type.id ?? ''}>
-                                                {gallery_type.name}
+                                props.events.map((event, index) => {
+                                    return (<option key={index} value={event.id ?? ''}>
+                                                {event.name}
                                             </option>)
                                 })
                             }

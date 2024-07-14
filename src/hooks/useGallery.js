@@ -7,7 +7,7 @@ export const useGallery = () => {
 	const [title, setTitle] = useState('');
 	const [slug, setSlug] = useState('');
 	const [description, setDescription] = useState('');
-    const [gallery_type_id, setGallery_type_id] = useState('');
+    const [event_id, setEvent_id] = useState('');
 	
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
@@ -28,7 +28,7 @@ export const useGallery = () => {
 		title,
 		slug,
 		description,
-        gallery_type_id
+        event_id
 		
         };
 
@@ -41,7 +41,7 @@ export const useGallery = () => {
 		title,
 		slug,
 		description,
-        gallery_type_id
+        event_id
 		
         };
 
@@ -57,7 +57,7 @@ export const useGallery = () => {
 		setTitle(gallery.title ?? '');
 		setSlug(gallery.slug ?? '');
 		setDescription(gallery.description ?? '');
-		setGallery_type_id(gallery.gallery_type_id ?? '');
+		setEvent_id(gallery.event_id ?? '');
 		
     }
     const emptyGallery = () => {
@@ -66,7 +66,7 @@ export const useGallery = () => {
 		setTitle('');
 		setSlug('');
 		setDescription('');
-		setGallery_type_id('');
+		setEvent_id('');
 		
     }
 
@@ -76,7 +76,7 @@ export const useGallery = () => {
 		title,
 		slug,
 		description,
-        gallery_type_id,
+        event_id,
 		
         errors,
         isDisabled,
@@ -84,7 +84,7 @@ export const useGallery = () => {
 		setTitle,
 		setSlug,
 		setDescription,
-        setGallery_type_id,
+        setEvent_id,
 		
         setId,
         setErrors,
