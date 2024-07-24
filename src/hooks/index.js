@@ -13,6 +13,9 @@ import { usePost } from './usePost';
 import { useImage } from './useImage';
 import { useFile } from './useFile';
 import { useGalleryType } from './useGalleryType';
+import { useForumCategory } from './useForumCategory';
+import { useForum } from './useForum';
+import { useMessage } from './useMessage';
 
 export const Hooks = {
     usePermission,
@@ -29,5 +32,8 @@ export const Hooks = {
 	usePost,
 	useImage,
 	useFile,
-	useGalleryType
+	useGalleryType,
+	useForumCategory,
+	useForum,
+	useMessage,
 }

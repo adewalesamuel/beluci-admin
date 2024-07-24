@@ -39,6 +39,15 @@ import { LoginView } from './LoginView';
 import { GalleryTypeListView } from './GalleryTypeListView';
 import { GalleryTypeEditView } from './GalleryTypeEditView';
 import { GalleryTypeCreateView } from './GalleryTypeCreateView';
+import { ForumCategoryListView } from './ForumCategoryListView';
+import { ForumCategoryCreateView } from './ForumCategoryCreateView';
+import { ForumCategoryEditView } from './ForumCategoryEditView';
+import { ForumListView } from './ForumListView';
+import { ForumCreateView } from './ForumCreateView';
+import { ForumEditView } from './ForumEditView';
+import { MessageListView } from './MessageListView';
+import { MessageCreateView } from './MessageCreateView';
+import { MessageEditView } from './MessageEditView';
 
 export const Views = {
     PermissionListView,
@@ -81,5 +90,14 @@ export const Views = {
 	LoginView,
 	GalleryTypeListView,
 	GalleryTypeEditView,
-	GalleryTypeCreateView
+	GalleryTypeCreateView,
+	ForumCategoryListView,
+	ForumCategoryCreateView,
+	ForumCategoryEditView,
+	ForumListView,
+	ForumCreateView,
+	ForumEditView,
+	MessageListView,
+	MessageCreateView,
+	MessageEditView,
 }

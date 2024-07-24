@@ -5,7 +5,8 @@ import { FiHome as IconHome,
     FiBookOpen as IconPage,
     FiCalendar as IconEvent,
     FiUsers as IconUsers,
-    FiImage as IconImage
+    FiFolderPlus as IconForum,
+    FiBox as IconCategory
  } from 'react-icons/fi';
 import { TbLogout } from 'react-icons/tb';
 import { Services } from '../services';
@@ -71,6 +72,18 @@ export function MainMenu() {
                                     <NavLink className="nav-link" to="/members">
                                         <IconUsers size={18} className='nav-icon'/>
                                         <span className="nav-link-title">Membres</span>
+                                    </NavLink>
+                                </div>
+                                <div className="nav-item">
+                                    <NavLink className="nav-link" to="/forums">
+                                        <IconForum size={18} className='nav-icon'/>
+                                        <span className="nav-link-title">Forums</span>
+                                    </NavLink>
+                                </div>
+                                <div className="nav-item">
+                                    <NavLink className="nav-link" to="/forum-categorys">
+                                        <IconCategory size={18} className='nav-icon'/>
+                                        <span className="nav-link-title">Categorie forums</span>
                                     </NavLink>
                                 </div>
                             </div>

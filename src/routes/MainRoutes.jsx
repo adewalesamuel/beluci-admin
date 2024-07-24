@@ -28,6 +28,14 @@ export function MainRoutes() {
                 <Route path='members' element={<Views.MemberListView />} />
                 <Route path='members/create' element={<Views.MemberCreateView />} />
                 <Route path='members/:id/edit' element={<Views.MemberEditView />} />
+                <Route path='forums' element={<Views.ForumListView />} />
+                <Route path='forums/create' element={<Views.ForumCreateView />} />
+                <Route path='forums/:id/edit' element={<Views.ForumEditView />} />
+                <Route path='forum-categorys' element={<Views.ForumCategoryListView />} />
+                <Route path='forum-categorys/create' element={<Views.ForumCategoryCreateView />} />
+                <Route path='forum-categorys/:id/edit' element={<Views.ForumCategoryEditView />} />
+                <Route path='forums/:id/messages' element={<Views.MessageListView />} />
+                <Route path='forums/:id/messages/create' element={<Views.MessageCreateView />} />
             </Routes>
         </Layouts.MainLayout>
     )

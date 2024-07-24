@@ -21,6 +21,9 @@ import { ImageFileInput } from './ImageFileInput';
 import { FileInput } from './FileInput';
 import { GalleryTypeForm } from './forms/GalleryTypeForm';
 import { Modal } from './Modal';
+import { ForumCategoryForm } from './forms/ForumCategoryForm';
+import { ForumForm } from './forms/ForumForm';
+import { MessageForm } from './forms/MessageForm';
 
 export const Components = {
     Loader,
@@ -46,4 +49,7 @@ export const Components = {
 	FileInput,
 	GalleryTypeForm,
 	Modal,
+	ForumCategoryForm,
+	ForumForm,
+	MessageForm,
 }
