@@ -3,9 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
+import { useError } from '../hooks/useError';
 
 export function MemberListView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const { MemberService } = Services;
 
@@ -85,7 +87,7 @@ export function MemberListView() {
             setMembers(memeberData);
             setPageLength(members.last_page);
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally {
             setIsLoading(false);
         }

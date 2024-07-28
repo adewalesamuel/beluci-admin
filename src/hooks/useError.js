@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Utils } from "../utils";
 
 export function useError() {
     const navigate = useNavigate();
@@ -10,7 +11,10 @@ export function useError() {
     const handle = useCallback(async () => { 
         if (!error) return;
         
-        if ('status' in error && error.status == 401) return navigate('/connexion');
+        if ('status' in error && error.status == 401) {
+            Utils.Auth.removeSessionToken();
+            return navigate('/connexion');
+        }
         if ('message' in error) setErrorMessages([error.message]);
         if (!('messages' in error)) return;
     

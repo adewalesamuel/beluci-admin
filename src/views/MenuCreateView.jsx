@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
+import { useError } from '../hooks/useError';
 
 export function MenuCreateView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ export function MenuCreateView() {
         try {
             
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally {
             useMenu.setIsDisabled(false);
         }

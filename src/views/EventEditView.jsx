@@ -4,9 +4,11 @@ import { Components } from '../components';
 import { Hooks } from '../hooks';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { Views } from '.';
+import { useError } from '../hooks/useError';
 
 export function EventEditView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const {id} = useParams();
 
@@ -40,7 +42,7 @@ export function EventEditView() {
         try {
             await useEvent.getEvent(id, abortController.signal);
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally{
             useEvent.setIsDisabled(false);
         }

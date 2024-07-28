@@ -3,9 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
+import { useError } from '../hooks/useError';
 
 export function EventCreateView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ export function EventCreateView() {
         try {
             
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally {
             useEvent.setIsDisabled(false);
         }

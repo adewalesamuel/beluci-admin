@@ -3,9 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
 import { useParams } from 'react-router-dom';
+import { useError } from '../hooks/useError';
 
 export function GalleryTypeEditView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const {id} = useParams();
 
@@ -39,7 +41,7 @@ export function GalleryTypeEditView() {
         try {
             await useGalleryType.getGalleryType(id, abortController.signal);
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally{
             useGalleryType.setIsDisabled(false);
         }

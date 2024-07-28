@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
+import { useError } from '../hooks/useError';
 
 export function PostCreateView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ export function PostCreateView() {
 
 			
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally {
             usePost.setIsDisabled(false);
         }

@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
+import { useError } from '../hooks/useError';
 
 export function MemberCreateView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ export function MemberCreateView() {
 
 			
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally {
             useMember.setIsDisabled(false);
         }

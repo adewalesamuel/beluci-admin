@@ -3,9 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { Components } from '../components';
 import { Hooks } from '../hooks';
 import { useParams } from 'react-router-dom';
+import { useError } from '../hooks/useError';
 
 export function PageEditView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const {id} = useParams();
 
@@ -42,7 +44,7 @@ export function PageEditView() {
             
             
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally{
             usePage.setIsDisabled(false);
         }

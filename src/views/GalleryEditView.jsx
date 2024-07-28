@@ -4,9 +4,11 @@ import { Components } from '../components';
 import { Hooks } from '../hooks';
 import { useParams } from 'react-router-dom';
 import { Services } from '../services';
+import { useError } from '../hooks/useError';
 
 export function GalleryEditView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const {galleryId} = useParams();
 
@@ -47,7 +49,7 @@ export function GalleryEditView() {
             
             setEvents(events);
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally{
             useGallery.setIsDisabled(false);
         }

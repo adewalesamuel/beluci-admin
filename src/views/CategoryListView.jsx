@@ -3,9 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
+import { useError } from '../hooks/useError';
 
 export function CategoryListView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const { CategoryService } = Services;
 
@@ -53,7 +55,7 @@ export function CategoryListView() {
             setCategorys(categorys.data);
             setPageLength(categorys.last_page);
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally {
             setIsLoading(false);
         }

@@ -4,9 +4,11 @@ import { Components } from '../components';
 import { Hooks } from '../hooks';
 import { useParams } from 'react-router-dom';
 import { Services } from '../services';
+import { useError } from '../hooks/useError';
 
 export function PermissionEditView() {
     let abortController = new AbortController();
+    const errorHandler = useError();
 
     const {id} = useParams();
 
@@ -43,7 +45,7 @@ export function PermissionEditView() {
             
             
         } catch (error) {
-            console.log(error);
+            errorHandler.setError(error); 
         } finally{
             usePermission.setIsDisabled(false);
         }
