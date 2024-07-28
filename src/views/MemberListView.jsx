@@ -15,26 +15,11 @@ export function MemberListView() {
         'logo_url': {},
 		'company_name': {},
 		'country_name': {},
-		'head_office': {},
-		'address': {},
-		'website_url': {},
-		'fullname': {},
-		'creation_date': {},
-		'employee_number': {},
-		'legal_status': {},
-		'share_capital': {},
 		'sector': {},
 		'company_category': {},
 		'representative_fullname': {},
-		'position': {},
-		'nationality': {},
-		'email': {},
 		'phone_number': {},
-		'sales_representative_fullname': {},
-		'sales_representative_position': {},
-		'sales_representative_email': {},
-		'sales_representative_phone_number': {},
-		'photo_url': {},
+        'is_validated': {},
 		
     }
     const tableActions = ['edit', 'delete'];
@@ -46,6 +31,7 @@ export function MemberListView() {
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(false);
 
     const handleEditClick = (e, data) => {
         e.preventDefault();
@@ -67,6 +53,44 @@ export function MemberListView() {
         }
     }
 
+    const handleValidateClick = async (e, member) => {
+        e.preventDefault();
+        setIsDisabled(true);
+        
+        if (isDisabled === true) return;
+
+        e.target.innerText = "Chargement...";
+
+        try {
+            if (!confirm('Vous vous vraiment validez ce membre'))
+                return;
+            
+            await MemberService.validate(member.id, abortController.signal);
+            init();
+        } catch (error) {
+            errorHandler.setError(error);
+            e.target.innerText = "Valider";
+        } finally {
+            setIsDisabled(false);
+        }
+    }
+
+    const renderIsValidated = (member, is_validated = false) => {
+        if (Boolean(is_validated) === false) {
+            return (<button className="btn btn-primary btn-sm" 
+            onClick={e => handleValidateClick(e, member)}>
+                    Valider</button>
+                );
+        }
+
+        if (Boolean(is_validated) === true || !is_validated) {
+            return (<span className='bg-soft-success text-success badge rounded-pill'>
+                    Membre validé</span>
+                );
+        }
+    
+    }
+
     const init = useCallback(async () => {
         try {
             const {members} = await MemberService.getAll(
@@ -74,12 +98,9 @@ export function MemberListView() {
             const memeberData = members.data.map(member => {
                 member['logo_url'] = (<img src={member.logo_url} 
                     className="rounded" width={50}/>);
-                member['photo_url'] = (<img src={member.photo_url} 
-                    className="rounded" width={50}/>);
                 member['company_name'] = (<Link to={`/members/${member.id}/edit`}>
                     {member.company_name}</Link>);
-                member['website_url'] = (<a href={member.website_url} 
-                    target="_blank">{member.website_url}</a>);
+                member['is_validated'] = renderIsValidated(member, member.is_validated);
 
                 return member;
             })

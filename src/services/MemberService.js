@@ -17,6 +17,12 @@ const create = (payload, signal) => {
 const update = (id, payload, signal) => {
     return Api.put(`${ENDPOINT}/${id}`, payload, signal)
 }
+
+
+const validate = (id, signal) => {
+    return Api.post(`${ENDPOINT}/${id}/validate`, '', signal)
+}
+
 const destroy = (id, signal) => {
     return Api.erase(`${ENDPOINT}/${id}`, signal)
 }
@@ -27,5 +33,6 @@ export const MemberService = {
     getById,
     create,
     update,
+    validate,
     destroy
 }
