@@ -35,6 +35,7 @@ export const useMember = () => {
 	const [member_id, setMember_id] = useState('');
 	const [member_source, setMember_source] = useState('');
 	const [sales_representative_nationality, setSales_representative_nationality] = useState('');
+	const [parent_company, setParent_company] = useState('');
 	
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
@@ -82,6 +83,7 @@ export const useMember = () => {
 		password,
 		member_id,
 		member_source,
+		parent_company,
 		sales_representative_nationality
 		
         };
@@ -122,6 +124,7 @@ export const useMember = () => {
 		password,
 		member_id,
 		member_source,
+		parent_company,
 		sales_representative_nationality
 		
         };
@@ -166,6 +169,7 @@ export const useMember = () => {
 		setIs_validated(member.is_validated ?? false);
 		setMember_source(member.member_source ?? '');
 		setSales_representative_nationality(member.sales_representative_nationality ?? '');
+		setParent_company(member.parent_company ?? '');
 		
     }
     const emptyMember = () => {
@@ -202,6 +206,7 @@ export const useMember = () => {
 		setIs_validated('');
 		setMember_source('');
 		setSales_representative_nationality('');
+		setParent_company('');
 		
     }
 
@@ -238,6 +243,7 @@ export const useMember = () => {
 		is_validated,
 		member_id,
 		member_source,
+		parent_company,
 		sales_representative_nationality,
 		
         errors,

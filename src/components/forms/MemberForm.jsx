@@ -117,6 +117,15 @@ export function MemberForm(props) {
                     </div>
                     <div className='col-12'>
                         <div className='form-group mb-2'>
+                            <label htmlFor='parent_compnay'>{__('parent_compnay')}</label>
+                            <input className='form-control' type='text' id='parent_compnay' name='parent_compnay' 
+                            placeholder={__('parent_compnay')} value={props.useMember.parent_compnay ?? ''}
+                            disabled={props.isDisabled} onChange={ e => 
+                                props.useMember.setParent_company(e.target.value) ?? null}/>
+                        </div>
+                    </div>
+                    <div className='col-12'>
+                        <div className='form-group mb-2'>
                             <label htmlFor='other_details'>{__('other_details')}</label>
                             <textarea className='form-control' type='text' id='other_details' name='other_details' 
                             placeholder={__('other_details')} value={props.useMember.other_details ?? ''}

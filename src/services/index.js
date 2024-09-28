@@ -16,6 +16,7 @@ import { GalleryTypeService } from './GalleryTypeService';
 import { ForumCategoryService } from './ForumCategoryService';
 import { ForumService } from './ForumService';
 import { MessageService } from './MessageService';
+import { DashboardService } from './DashboardService';
 
 export const Services = {
     PermissionService,
@@ -36,5 +37,6 @@ export const Services = {
 	ForumCategoryService,
 	ForumService,
 	MessageService,
+	DashboardService
 	
 }

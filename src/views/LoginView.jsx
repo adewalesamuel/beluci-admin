@@ -26,11 +26,11 @@ export function LoginView() {
         try {
             const payload = {email, password};
             
-            const {user, token} = await Services.AuthService.login(
+            const {admin, token} = await Services.AuthService.login(
                 JSON.stringify(payload), abortController.signal);
 
             setSessionToken(token);
-            setUser(user);
+            setUser(admin);
             navigate('/');
         } catch(error) {
             if ('message' in error) setErrorMessages([error.message]);
