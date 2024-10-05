@@ -4,7 +4,7 @@ import { Services } from '../services';
 import { Components } from "../components";
 
 export function DashboardView(){
-    const abortController = new AbortController();
+    let abortController = new AbortController();
     const tableAttributes = {
         'company_name': {},
 		'representative_fullname': {},
@@ -52,6 +52,11 @@ export function DashboardView(){
     
     useEffect(() => {
         init();
+
+        return () => {
+            abortController.abort();
+            abortController = new AbortController();
+        }
     }, [init])
 
     return (
