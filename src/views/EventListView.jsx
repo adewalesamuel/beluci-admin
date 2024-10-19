@@ -1,6 +1,6 @@
 //'use client'
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { useError } from '../hooks/useError';
@@ -10,21 +10,6 @@ export function EventListView() {
     const errorHandler = useError();
 
     const { EventService } = Services;
-
-    const tableAttributes = {
-        'img_url': {},
-		'name': {},
-		'date': {},
-		'time': {},
-		'address': {},
-		'gps_location': {},
-		'is_payed': {},
-		'price': {},
-		
-    }
-    const tableActions = ['edit', 'delete'];
-    
-    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
     const [events, setEvents] = useState([]);
@@ -32,39 +17,12 @@ export function EventListView() {
     const [pageLength, setPageLength] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
 
-    const handleEditClick = (e, data) => {
-        e.preventDefault();
-        navigate(`/events/${data.id}/edit`);
-    }
-    const handleDeleteClick = async (e, event) => {
-        e.preventDefault();
-
-        if (confirm('Voulez vous vraiment supprimer ce event')) {
-            const eventsCopy = [...events];
-            const index = eventsCopy.findIndex(eventItem => 
-                eventItem.id === event.id);
-
-            eventsCopy.splice(index, 1);
-            setEvents(eventsCopy);
-
-            await EventService.destroy(event.id, 
-                abortController.signal);
-        }
-    }
-
     const init = useCallback(async () => {
         try {
             const {events} = await EventService.getAll(
                 {page: page}, abortController.signal);
 
-            const eventData = events.data.map(event => {
-                event['img_url'] = (<img src={event.img_url} 
-                    className="rounded" width={50}/>);
-                
-                return event;
-            });
-
-            setEvents(eventData);
+            setEvents(events.data);
             setPageLength(events.last_page);
         } catch (error) {
             errorHandler.setError(error); 
@@ -90,15 +48,35 @@ export function EventListView() {
 
     return (
         <>
-            <h4>Liste Events</h4>
-            <Components.Loader isLoading={isLoading}>
-                <Link className='btn btn-info' to='/events/create'>
-                     Créer event
+            <div className="d-flex justify-content-end">
+                <Link className='btn btn-primary' to='/events/create'>
+                     Créer un évènement
                 </Link>
-                <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
-                tableAttributes={tableAttributes} tableActions={tableActions} 
-                tableData={events}/>
-
+            </div>
+            <Components.Loader isLoading={isLoading}>
+                <div className="row mb-3 align-items-stretch">
+                    {events.map((event, index) => {
+                        return (
+                            <div className="col-12 col-md-6 col-lg-4" key={index}>
+                                <div className="card h-100 position-relative">
+                                    <div className="card-img-top bg-light">
+                                        <img src={event.img_url} className='img-fluid' 
+                                        alt={event.name} loading='lazy'/>
+                                    </div>
+                                    <div className="card-body">
+                                        <h3 className='card-title'>{event.name}</h3>
+                                        <address className='mb-1'>{event.address}</address>
+                                        <time>
+                                            {new Date(event.date).toLocaleDateString(
+                                                'fr', {'dateStyle':'short'})}
+                                        </time>
+                                    </div>
+                                    <Link to={`/events/${event.id}/edit`} className="stretched-link"></Link>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
                 <Components.Pagination pageLength={pageLength} page={parseInt(page)} />
             </Components.Loader>
         </>

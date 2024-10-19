@@ -53,7 +53,7 @@ export const usePage = () => {
         };
 
         return Services.PageService.update(
-        	pageId, JSON.stringify(payload), signal);
+            pageId, JSON.stringify(payload), signal);
     }
     const deletePage = (pageId, signal) => {
         return Services.PageService.destroy(pageId, signal);
