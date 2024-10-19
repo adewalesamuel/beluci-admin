@@ -1,25 +1,25 @@
 [
     {
         "name" : "titleHeader",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "backgroundImgUrl" : ""
     },
     {
         "name" : "homeHero",
         "backgroundImgUrl" : "",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "description" : "Entrez une description",
         "buttonText" : "Lire la suite"
     },
     {
         "name" : "homeEvent",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "buttonText" : "Voir tous nos évènements",
         "buttonLink" : "/"
     },
     {
         "name" : "homePresident",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "description" : "Entrez une description",
         "authorName" : "Pierre DECLERCK",
         "authorJob" : "Président",
@@ -27,7 +27,7 @@
     },
     {
         "name" : "homeTeamList",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "team_item_list" : [
             {
                 "name" : "M. Michael Eeckout",
@@ -38,7 +38,7 @@
     },
     {
         "name" : "homeTeamDetail",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "landscapeImgUrl" : "",
         "portraitImgUrl" : "",
         "team_detail_item_list" : [
@@ -53,7 +53,7 @@
     },
     {
         "name" : "eventAbout",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "description" : "Entrez une description"
     },
     {
@@ -61,22 +61,54 @@
     },
     {
         "name" : "service",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "description" : "Entrez une description",
         "service_item_list" : [
             {
                 "imgUrl" : "",
                 "number" : "01",
-                "title" : "Entez un titre",
+                "title" : "Entrez un titre",
                 "description" : "Entrez une description"
             }
         ]
     },
     {
         "name" : "pemAbout",
-        "title" : "Entez un titre",
+        "title" : "Entrez un titre",
         "description" : "Entrez une description",
         "backgroundImgUrl" : ""
+    },
+    {
+        "name" : "pemFeature",
+        "title" : "Entrez un titre",
+        "feature_item_list" : [
+            {
+                "imgUrl" : "",
+                "number" : "01",
+                "description" : "Entrez une description"
+            }
+        ]
+    },
+    {
+        "name" : "pemPartner",
+        "title" : "Entrez un titre",
+        "partner_item_list" : [
+            {
+                "imgUrl" : ""
+            }
+        ]
+    },
+    {
+        "name" : "pemLink",
+        "title" : "Entrez un titre",
+        "backgroundImgUrl": "",
+        "link_item_list" : [
+            {
+                "title": "",
+                "description": "",
+                "url": ""
+            }
+        ]
     },
     {
         "name" : "galleryTypeList"
