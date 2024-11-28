@@ -92,6 +92,7 @@ export const useMember = () => {
         JSON.stringify(payload), signal);
     }
     const updateMember = (memberId, signal) => {
+		const isValidated = is_validated == false ? null : is_validated;
         const payload = {
             logo_url,
 		company_name,
@@ -120,7 +121,7 @@ export const useMember = () => {
 		photo_url,
 		commercial_register_url,
 		idcard_url,
-		is_validated,
+		is_validated: isValidated,
 		password,
 		member_id,
 		member_source,
