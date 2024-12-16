@@ -13,6 +13,9 @@ export function MainRoutes() {
                 <Route path='events' element={<Views.EventListView />} />
                 <Route path='events/create' element={<Views.EventCreateView />} />
                 <Route path='events/:id/edit/*' element={<Views.EventEditView />} />
+                <Route path='admins' element={<Views.AdminListView />} />
+                <Route path='admins/create' element={<Views.AdminCreateView />} />
+                <Route path='admins/:id/edit/*' element={<Views.AdminEditView />} />
                 <Route path='menus' element={<Views.MenuListView />} />
                 <Route path='menus/create' element={<Views.MenuCreateView />} />
                 <Route path='menus/:id/edit' element={<Views.MenuEditView />} />
