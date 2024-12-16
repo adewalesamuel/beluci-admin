@@ -47,7 +47,7 @@ export function MemberListView() {
     const handleDeleteClick = async (e, member) => {
         e.preventDefault();
 
-        if (confirm('Voulez vous vraiment supprimer ce member')) {
+        if (confirm('Voulez vous vraiment supprimer ce membre')) {
             const membersCopy = [...members];
             const index = membersCopy.findIndex(memberItem => 
                 memberItem.id === member.id);
@@ -140,10 +140,12 @@ export function MemberListView() {
 
     return (
         <>
-            <div className="d-flex align-items-center justify-content-between">
-                <h4>Liste Members</h4>
+            <div className="d-flex align-items-center">
                 <Link className='btn btn-info' to='/members/create'>
                      Ajouter un membre
+                </Link>
+                <Link className='btn btn-link text-danger ms-2' to='/members-trashed'>
+                     Corbeille
                 </Link>
             </div>
             <Components.Loader isLoading={isLoading}>

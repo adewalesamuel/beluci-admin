@@ -78,7 +78,6 @@ export function CategoryListView() {
 
     return (
         <>
-            <h4>Liste Categorys</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/categorys/create'>
                      Créer category

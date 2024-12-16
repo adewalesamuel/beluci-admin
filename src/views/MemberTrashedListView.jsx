@@ -1,61 +1,66 @@
 //'use client'
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { useError } from '../hooks/useError';
 
-export function MenuItemListView() {
+export function MemberTrashedListView() {
     let abortController = new AbortController();
     const errorHandler = useError();
 
-    const { MenuItemService } = Services;
+    const { MemberService } = Services;
 
     const tableAttributes = {
-        'name': {},
-		'slug': {},
-		'type': {},
-		'menu_item_id': {},
-		'menu_id': {},
+        'logo_url': {},
+		'company_name': {},
+		'country_name': {},
+		'sector': {},
+		'company_category': {},
+		'representative_fullname': {},
+		'phone_number': {},
 		
     }
-    const tableActions = ['edit', 'delete'];
+    const tableActions = ['delete'];
     
-    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const [menuitems, setMenuItems] = useState([]);
+    const [members, setMembers] = useState([]);
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
 
-    const handleEditClick = (e, data) => {
-        e.preventDefault();
-        navigate(`/menu-items/${data.id}/edit`);
-    }
-    const handleDeleteClick = async (e, menuitem) => {
+    const handleDeleteClick = async (e, member) => {
         e.preventDefault();
 
-        if (confirm('Voulez vous vraiment supprimer ce menuitem')) {
-            const menuitemsCopy = [...menuitems];
-            const index = menuitemsCopy.findIndex(menuitemItem => 
-                menuitemItem.id === menuitem.id);
+        if (confirm('Voulez vous vraiment restaurer ce membre')) {
+            const membersCopy = [...members];
+            const index = membersCopy.findIndex(memberItem => 
+                memberItem.id === member.id);
 
-            menuitemsCopy.splice(index, 1);
-            setMenuItems(menuitemsCopy);
+            membersCopy.splice(index, 1);
+            setMembers(membersCopy);
 
-            await MenuItemService.destroy(menuitem.id, 
+            await MemberService.restore(member.id, 
                 abortController.signal);
         }
     }
 
     const init = useCallback(async () => {
         try {
-            const {menu_items} = await MenuItemService.getAll(
+            const {members} = await MemberService.getAllTrashed(
                 {page: page}, abortController.signal);
+            const memeberData = members.data.map(member => {
+                member['logo_url'] = (<img src={member.logo_url} 
+                    className="rounded" width={50}/>);
+                member['company_name'] = (<Link to={`/members/${member.id}/edit`}>
+                    {member.company_name}</Link>);
 
-            setMenuItems(menu_items.data);
-            setPageLength(menu_items.last_page);
+                return member;
+            })
+
+            setMembers(memeberData);
+            setPageLength(members.last_page);
         } catch (error) {
             errorHandler.setError(error); 
         } finally {
@@ -74,19 +79,15 @@ export function MenuItemListView() {
 
     useEffect(() => {
         if (!searchParams.get('page')) return;
-
         setPage(searchParams.get('page'));
     }, [searchParams.get('page')]);
 
     return (
         <>
             <Components.Loader isLoading={isLoading}>
-                <Link className='btn btn-info' to='/menu-items/create'>
-                     Créer un menu
-                </Link>
-                <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
+                <Components.Table controllers={{handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 
-                tableData={menuitems}/>
+                tableData={members}/>
 
                 <Components.Pagination pageLength={pageLength} page={parseInt(page)} />
             </Components.Loader>

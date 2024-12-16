@@ -26,6 +26,7 @@ export function MainRoutes() {
                 <Route path='posts/create' element={<Views.PostCreateView />} />
                 <Route path='posts/:id/edit' element={<Views.PostEditView />} />
                 <Route path='members' element={<Views.MemberListView />} />
+                <Route path='members-trashed' element={<Views.MemberTrashedListView />} />
                 <Route path='members/create' element={<Views.MemberCreateView />} />
                 <Route path='members/:id/edit' element={<Views.MemberEditView />} />
                 <Route path='forums' element={<Views.ForumListView />} />

@@ -87,7 +87,6 @@ export function ForumListView() {
 
     return (
         <>
-            <h6>Liste Forums</h6>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/forums/create'>
                     Créer forum

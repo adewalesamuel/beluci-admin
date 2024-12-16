@@ -80,10 +80,9 @@ export function ForumCategoryListView() {
 
     return (
         <>
-            <h6>Liste ForumCategorys</h6>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/forum-categorys/create'>
-                    Créer forum_category
+                    Créer catégorie forum
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

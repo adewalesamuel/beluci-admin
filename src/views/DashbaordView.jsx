@@ -28,7 +28,7 @@ export function DashboardView(){
     const handleDeleteClick = async (e, member) => {
         e.preventDefault();
 
-        if (confirm('Voulez vous vraiment supprimer ce member')) {
+        if (confirm('Voulez vous vraiment supprimer ce membre')) {
             const membersCopy = [...members];
             const index = membersCopy.findIndex(memberItem => 
                 memberItem.id === member.id);

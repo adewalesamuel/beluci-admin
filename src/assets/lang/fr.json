@@ -6,6 +6,7 @@
     "events": "Évènement",
     "event_id": "Identifiant de l'Évènement",
     "members": "Membre",
+    "members-trashed": "Corbeille Membres",
     "gallerys": "Gallerie",
     "is_validated": "Est validé",
     "slug": "Slug",
@@ -74,5 +75,7 @@
     "content": "Contenu",
     "excerpt": "Extrait",
     "author": "Auteur",
-    "parent_compnay": "Maison mère/Groupe"
+    "parent_compnay": "Maison mère/Groupe",
+    "forums": "Forums",
+    "forum-categorys": "Categories Forums"
 }

@@ -80,10 +80,9 @@ export function PageListView() {
 
     return (
         <>
-            <h4>Liste Pages</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/pages/create'>
-                     Créer page
+                     Créer une page
                 </Link>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 

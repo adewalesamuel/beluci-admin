@@ -7,6 +7,10 @@ const getAll = (params, signal) => {
     return Api.get(`${ENDPOINT}?page=${params?.page ?? ''}${query}`, signal);
 }
 
+const getAllTrashed = (params, signal) => {
+    return Api.get(`${ENDPOINT}/trashed?page=${params?.page ?? ''}`, signal);
+}
+
 const getById = (id, signal) => {
     return Api.get(`${ENDPOINT}/${id}`, signal);
 }
@@ -28,12 +32,18 @@ const destroy = (id, signal) => {
     return Api.erase(`${ENDPOINT}/${id}`, signal)
 }
 
+const restore =(id, signal) => {
+    return Api.post(`${ENDPOINT}/${id}/restore`,'', signal)
+}
+
 export const MemberService = {
     ENDPOINT,
     getAll,
+    getAllTrashed,
     getById,
     create,
     update,
     validate,
-    destroy
+    destroy,
+    restore,
 }

@@ -48,6 +48,7 @@ import { ForumEditView } from './ForumEditView';
 import { MessageListView } from './MessageListView';
 import { MessageCreateView } from './MessageCreateView';
 import { MessageEditView } from './MessageEditView';
+import { MemberTrashedListView } from './MemberTrashedListView';
 
 export const Views = {
     PermissionListView,
@@ -100,4 +101,5 @@ export const Views = {
 	MessageListView,
 	MessageCreateView,
 	MessageEditView,
+	MemberTrashedListView,
 }

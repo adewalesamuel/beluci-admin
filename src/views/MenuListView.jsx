@@ -77,7 +77,6 @@ export function MenuListView() {
 
     return (
         <>
-            <h4>Liste Menus</h4>
             <Components.Loader isLoading={isLoading}>
                 <Link className='btn btn-info' to='/menus/create'>
                      Créer menu
