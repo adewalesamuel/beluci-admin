@@ -4,6 +4,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Services } from '../services';
 import { Components } from '../components';
 import { useError } from '../hooks/useError';
+import { BsSearch } from 'react-icons/bs';
 
 export function MemberListView() {
     let abortController = new AbortController();
@@ -32,7 +33,13 @@ export function MemberListView() {
     const [pageLength, setPageLength] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const [isDisabled, setIsDisabled] = useState(false);
+    const [query, setQuery] = useState('');
+    const [search, setSearch] = useState('');
 
+    const handleSearchSubmit = e => {
+        e.preventDefault();
+        navigate(`?page=1&query=${search}`);
+    }
     const handleEditClick = (e, data) => {
         e.preventDefault();
         navigate(`/members/${data.id}/edit`);
@@ -88,13 +95,12 @@ export function MemberListView() {
                     Membre validé</span>
                 );
         }
-    
     }
 
     const init = useCallback(async () => {
         try {
             const {members} = await MemberService.getAll(
-                {page: page}, abortController.signal);
+                {page: page, query: query}, abortController.signal);
             const memeberData = members.data.map(member => {
                 member['logo_url'] = (<img src={member.logo_url} 
                     className="rounded" width={50}/>);
@@ -112,7 +118,7 @@ export function MemberListView() {
         } finally {
             setIsLoading(false);
         }
-    }, [page]);
+    }, [page, query]);
 
     useEffect(() => {
         init();
@@ -125,17 +131,36 @@ export function MemberListView() {
 
     useEffect(() => {
         if (!searchParams.get('page')) return;
-
         setPage(searchParams.get('page'));
     }, [searchParams.get('page')]);
 
+    useEffect(() => {
+        setQuery(searchParams.get('query'));
+    }, [searchParams.get('query')]);
+
     return (
         <>
-            <h4>Liste Members</h4>
-            <Components.Loader isLoading={isLoading}>
+            <div className="d-flex align-items-center justify-content-between">
+                <h4>Liste Members</h4>
                 <Link className='btn btn-info' to='/members/create'>
-                     Créer member
+                     Ajouter un membre
                 </Link>
+            </div>
+            <Components.Loader isLoading={isLoading}>
+                <div className='row justify-content-end mt-4'>
+                    <div className='col-5'>
+                        <form onSubmit={handleSearchSubmit}>
+                            <div className="input-group mb-3">
+                                <input type="search" className="form-control" value={search} 
+                                placeholder="Rechercher un membre" onChange={e => setSearch(e.target.value)}/>
+                                <button className="btn btn-info" type="submit" id="button-addon2" 
+                                onClick={handleSearchSubmit}>
+                                    <BsSearch />
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <Components.Table controllers={{handleEditClick, handleDeleteClick}} 
                 tableAttributes={tableAttributes} tableActions={tableActions} 
                 tableData={members}/>

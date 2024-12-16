@@ -3,7 +3,8 @@ import { Api } from './Api';
 const ENDPOINT = '/members';
 
 const getAll = (params, signal) => {
-    return Api.get(`${ENDPOINT}?page=${params?.page ?? ''}`, signal)
+    const query = params.query ? `&query=${params.query}` : '';
+    return Api.get(`${ENDPOINT}?page=${params?.page ?? ''}${query}`, signal);
 }
 
 const getById = (id, signal) => {
