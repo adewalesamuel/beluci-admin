@@ -262,8 +262,7 @@ export function MemberForm(props) {
                             <label htmlFor='cover_letter_url'>{__('cover_letter_url')}</label>
                             {props.useMember.cover_letter_url && 
                                 <a href={props.useMember.cover_letter_url} 
-                                className='text-primary fw-bold ms-2'
-                                download={`lm_${props.useMember.fullname}`}>
+                                className='text-primary fw-bold ms-2' download>
                                     Télécharger
                                 </a>
                             }
@@ -274,6 +273,12 @@ export function MemberForm(props) {
                     <div className='col-12'>
                         <div className='form-group mb-2'>
                             <label htmlFor='photo_url'>{__('photo_url')}</label>
+                            {props.useMember.photo_url && 
+                                <a href={props.useMember.photo_url} 
+                                className='text-primary fw-bold ms-2' download>
+                                    Télécharger
+                                </a>
+                            }
                             <Components.ImageFileInput img_url={props.useMember.photo_url ?? ''}
                             handleImageChange={props.useMember.setPhoto_url}/>
                         </div>
@@ -283,8 +288,7 @@ export function MemberForm(props) {
                             <label htmlFor='commercial_register_url'>{__('commercial_register_url')}</label>
                             {props.useMember.commercial_register_url && 
                                 <a href={props.useMember.commercial_register_url} 
-                                className='text-primary fw-bold ms-2'
-                                download={`Registre_${props.useMember.company_name}`}>
+                                className='text-primary fw-bold ms-2' download>
                                     Télécharger
                                 </a>
                             }
@@ -295,6 +299,12 @@ export function MemberForm(props) {
                     <div className='col-12'>
                         <div className='form-group mb-2'>
                             <label htmlFor='idcard_url'>{__('idcard_url')}</label>
+                            {props.useMember.idcard_url && 
+                                <a href={props.useMember.idcard_url} 
+                                className='text-primary fw-bold ms-2' download>
+                                    Télécharger
+                                </a>
+                            }
                             <Components.ImageFileInput img_url={props.useMember.idcard_url ?? ''}
                             handleImageChange={props.useMember.setIdcard_url}/>
                         </div>

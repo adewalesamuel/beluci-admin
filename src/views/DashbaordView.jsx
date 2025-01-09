@@ -136,7 +136,7 @@ export function DashboardView(){
                             </div>
                         </div>
                         <div className="card-body">
-                            <img src={analytics?.latest_event?.display_img_url ?? ''} className="img-fluid" 
+                            <img src={analytics?.latest_event?.img_url ?? ''} className="img-fluid" 
                             onError={e => e.currentTarget.src=placeholderImg} />
 
                             <div className="py-2">
