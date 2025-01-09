@@ -7,6 +7,11 @@ import { useError } from '../hooks/useError';
 import { BsSearch } from 'react-icons/bs';
 
 export function MemberListView() {
+    const VALIDATION_STATES = Object.freeze({
+        DEFAULT: '',
+        VALIDATED: '1',
+        UNVALIDATED: '0',
+    })
     let abortController = new AbortController();
     const errorHandler = useError();
 
@@ -35,10 +40,15 @@ export function MemberListView() {
     const [isDisabled, setIsDisabled] = useState(false);
     const [query, setQuery] = useState('');
     const [search, setSearch] = useState('');
+    const [validationState, setValidationState] = useState(VALIDATION_STATES.DEFAULT)
+
+    const handleValidationStateChange = (state) => {
+        navigate(`?page=1&is_validated=${state}`);
+    }
 
     const handleSearchSubmit = e => {
         e.preventDefault();
-        navigate(`?page=1&query=${search}`);
+        navigate(`?page=1&query=${search}&is_validated=${validationState}`);
     }
     const handleEditClick = (e, data) => {
         e.preventDefault();
@@ -99,8 +109,11 @@ export function MemberListView() {
 
     const init = useCallback(async () => {
         try {
-            const {members} = await MemberService.getAll(
-                {page: page, query: query}, abortController.signal);
+            const {members} = await MemberService.getAll({
+                page: page, 
+                query: query,
+                is_validated: validationState,
+            }, abortController.signal);
             const memeberData = members.data.map(member => {
                 member['logo_url'] = (<img src={member.logo_url} 
                     className="rounded" width={50}/>);
@@ -118,7 +131,7 @@ export function MemberListView() {
         } finally {
             setIsLoading(false);
         }
-    }, [page, query]);
+    }, [page, query, validationState]);
 
     useEffect(() => {
         init();
@@ -138,6 +151,10 @@ export function MemberListView() {
         setQuery(searchParams.get('query'));
     }, [searchParams.get('query')]);
 
+    useEffect(() => {
+        setValidationState(searchParams.get('is_validated'));
+    }, [searchParams.get('is_validated')]);
+
     return (
         <>
             <div className="d-flex align-items-center">
@@ -149,8 +166,25 @@ export function MemberListView() {
                 </Link>
             </div>
             <Components.Loader isLoading={isLoading}>
-                <div className='row justify-content-end mt-4'>
-                    <div className='col-5'>
+                <div className='row justify-content-between mt-4 align-items-center'>
+                    <div className='col-lg-5 col-12 gap-2 d-flex'>
+                        <a className={`btn btn-sm btn-${validationState === 
+                            VALIDATION_STATES.DEFAULT  ? 'primary' : 'light'}`} 
+                            onClick={() => handleValidationStateChange(VALIDATION_STATES.DEFAULT)}>
+                                Tous
+                        </a>
+                        <a className={`btn btn-sm btn-${validationState === 
+                            VALIDATION_STATES.VALIDATED  ? 'primary' : 'light'}`} 
+                            onClick={() => handleValidationStateChange(VALIDATION_STATES.VALIDATED)}>
+                                Validés
+                        </a>
+                        <a className={`btn btn-sm btn-${validationState === 
+                            VALIDATION_STATES.UNVALIDATED  ? 'primary' : 'light'}`} 
+                            onClick={() => handleValidationStateChange(VALIDATION_STATES.UNVALIDATED)}>
+                                Non validés
+                        </a>
+                    </div>
+                    <div className='col-lg-5 col-12'>
                         <form onSubmit={handleSearchSubmit}>
                             <div className="input-group mb-3">
                                 <input type="search" className="form-control" value={search} 

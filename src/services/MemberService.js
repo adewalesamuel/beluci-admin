@@ -4,7 +4,9 @@ const ENDPOINT = '/members';
 
 const getAll = (params, signal) => {
     const query = params.query ? `&query=${params.query}` : '';
-    return Api.get(`${ENDPOINT}?page=${params?.page ?? ''}${query}`, signal);
+    const is_validated = params.is_validated ? `&is_validated=${params.is_validated}`: '';
+
+    return Api.get(`${ENDPOINT}?page=${params?.page ?? ''}${query}${is_validated}`, signal);
 }
 
 const getAllTrashed = (params, signal) => {

@@ -73,7 +73,7 @@ export function DashboardView(){
                                     <h2 className="text-white">Vous avez <span style={{color: "#b2defc"}}>
                                         {analytics.pending_members ?? '--'} nouvelles demandes d&apos;inscription
                                     </span> de membres à validez</h2>
-                                    <Link className="btn btn-sm text-black mt-2" to='/members' style={{backgroundColor: "#b2defc"}}>
+                                    <Link className="btn btn-sm text-black mt-2" to='/members?is_validated=0' style={{backgroundColor: "#b2defc"}}>
                                         Voir les demandes à valider
                                     </Link>
                                 </div>
@@ -87,7 +87,7 @@ export function DashboardView(){
                                         <div className="display-3 text-black fw-light">
                                             {analytics.validated_members ?? '--'}
                                         </div>
-                                        <Link className="btn btn-sm border py-1 px-2 border-dark" to='/members'>
+                                        <Link className="btn btn-sm border py-1 px-2 border-dark" to='/members?is_validated=1'>
                                             Voir {'>'}
                                         </Link>
                                     </div>
@@ -102,7 +102,7 @@ export function DashboardView(){
                                         <div className="display-3 text-black fw-light">
                                             {analytics.pending_members ?? '--'}
                                         </div>
-                                        <Link className="btn btn-sm border py-1 px-2 border-dark" to='/members'>
+                                        <Link className="btn btn-sm border py-1 px-2 border-dark" to='/members?is_validated=0'>
                                             Voir {'>'}
                                         </Link>
                                     </div>
